@@ -1,0 +1,140 @@
+syntax = "proto3";
+package job_seek.job_search;
+
+option go_package = "job-seek/pkg/protos";
+// option python_package = "job_seek.job_search";
+/**
+
+        SiteKey        string `url:"siteKey", json:"sitekey"`
+        Where          string `url:"where", json:"where"`
+        Page           int    `url:"page", json:"page"`
+        Keywords       string `url:"keywords", json:"keywords"`
+        SalaryType     string `url:"salarytype", json:"salarytype"`
+        SalaryRange    string `url:"salaryrange", json:"salaryrange"`
+        Locale         string `url:"locale", json:"locale"`
+        SeekerId       string `url:"seekerId", json:"seekerId"`
+        Classification string `url:"classification", json:"classification"`
+        AdvertiserId   string `url:"advertiserid", json:"advertiserid"`
+
+*/
+
+message JobSearchRequest {
+  string user_id = 1;
+  optional SalaryType salary_type = 2;
+  optional int32 min_salary = 3;
+  optional int32 max_salary = 4;
+  optional WorkType work_type = 5;
+  optional int32 classification = 6;
+  optional CompanySize company_size = 7;
+  optional string work_locale = 8;
+  optional string post_id = 9;
+  optional string company_id = 10;
+  repeated string keywords = 11;
+
+  optional int32 total_count = 12;
+  optional int32 page_number = 13;
+  optional int32 page_size = 14;
+  optional string cache_ref = 15;
+  optional bool allow_mix_cache = 16;
+}
+
+enum SalaryType {
+  ANNUAL = 0;
+  MONTHLY = 1;
+  HOURLY = 2;
+}
+
+enum WorkType {
+  FULL_TIME = 0;
+  PART_TIME = 1;
+  CASUAL = 2;
+  CONTRACT = 3;
+  TEMPORARY = 4;
+  INTERNSHIP = 5;
+  VOLUNTEER = 6;
+  APPRENTICESHIP = 7;
+}
+
+enum CompanySize {
+  SIZE_A = 0; // "1_10"
+  SIZE_B = 1; // "11-50",
+  SIZE_C = 2; // "51-200",
+  SIZE_D = 3; // "201-500",
+  SIZE_E = 4; // "501-1000",
+  SIZE_F = 5; // "1001-5000",
+  SIZE_G = 6; // "5001-10000",
+  SIZE_H = 7; // "10001+"
+}
+
+message JobSearchResponse {
+  repeated Job job = 1;
+  optional int32 total_count = 2;
+  optional int32 page_number = 3;
+  optional int32 total_page = 4;
+  optional string message = 5;
+  optional string cache_ref = 6;
+}
+
+message Job {
+  string post_id = 1;
+  string post_title = 2;
+  string post_url = 3;
+  string pay_range = 4;
+  string debug_text = 5;
+  repeated string hitted_keywords = 6;
+  optional int32 score = 7;
+  string role = 8;
+  string work_type = 9;
+  optional CompanyDetail company_detail = 10;
+  string locations = 11;
+  string expiring_date = 12;
+}
+
+message CompanyDetail {
+  string reference_id = 1;
+  string name = 2;
+  string url = 3;
+  string linkedin = 4;
+  string description = 5;
+  string industry = 6;
+  int32 job_posted = 7;
+  CompanySize group_size = 8;
+  string head_quarters = 9;
+  repeated string specialties = 10;
+  string locations = 11;
+  string last_update = 12;
+}
+
+message CompanyDetailRequest {
+  optional string reference_id = 1;
+  optional string name = 2;
+  optional string industry = 3;
+  optional string location = 4;
+  repeated CompanySize group_size = 5;
+  repeated string specialties = 6;
+
+  optional string cache_ref = 7;
+  optional int32 page_number = 8;
+  optional int32 page_size = 9;
+}
+
+message CompanyDetailResponse {
+  repeated CompanyDetail company_details = 1;
+  optional int32 total_count = 2;
+  optional int32 page_number = 3;
+  optional int32 total_page = 4;
+  optional string message = 5;
+  optional string cache_ref = 6;
+}
+
+service JobSearchService {
+  rpc JobSearch(JobSearchRequest) returns (JobSearchResponse);
+  rpc UserJobSearch(JobSearchRequest) returns (JobSearchResponse);
+
+  rpc GetJobByPostId(JobSearchRequest) returns (JobSearchResponse);
+  rpc GetJobByCompanyId(JobSearchRequest) returns (JobSearchResponse);
+
+
+  rpc ListCompanyDetail(CompanyDetailRequest) returns (CompanyDetailResponse);
+  rpc GetCompanyDetail(CompanyDetailRequest) returns (CompanyDetail);
+}

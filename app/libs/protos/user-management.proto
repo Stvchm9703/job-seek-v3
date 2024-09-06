@@ -1,0 +1,97 @@
+syntax = "proto3";
+package job_seek.user_management;
+import "job-search.proto";
+
+option go_package = "job-seek/pkg/protos";
+
+
+message GetUserRequest {
+  optional string reference_id = 1;
+  optional  string user_id = 2;
+  optional string user_name = 3;
+  optional string user_email = 4;
+  optional string user_phone = 5;
+  optional string user_password = 6;
+}
+
+message UserResponse {
+  string status = 1;
+  string user_id = 2;
+  string message = 3;
+}
+
+message UserAccount {
+  string id = 1;
+  string user_name = 2;
+  string user_password = 3;
+  string user_email = 4;
+  string user_phone = 5;
+  string user_address = 6;
+}
+
+message UserCVProfile {
+  string user_id = 1;
+  string cv_id = 2;
+  bytes cv_data = 3;
+  repeated PreferenceKeyword cv_keywords = 4;
+}
+
+enum UserProfileType {
+  STUDENT = 0;
+  EMPLOYEE = 1;
+  CERTIFICATE = 2;
+  PART_TIME_EMPLOYEE = 3;
+  CONTRACT_EMPLOYEE = 4;
+  OTHER = 5;
+}
+
+message UserProfile {
+  string id = 1;
+  string user_id = 2;
+  string title = 3;
+  string position = 4;
+  string description = 5;
+  string salary = 6;
+  string location = 7;
+  string company = 8;
+  UserProfileType type = 9;
+  repeated PreferenceKeyword keywords = 10;
+  string start_date = 11;
+  string end_date = 12;
+  optional  job_seek.job_search.CompanyDetail company_detail = 13;
+}
+
+message PreferenceKeyword {
+  string kw_id = 1;
+  string user_id = 2;   // seeker-id
+  string keyword = 3;   //
+  string value = 4;     //
+  string type = 5;      //
+  bool is_positive = 6; // true: positive, false: negative
+}
+//
+
+message ListUserProfileResponse {
+  repeated UserProfile profiles = 1;
+    string status = 2;
+    string message = 3;
+    string user_id = 4;
+}
+
+service UserManagementService {
+  // from user management
+  rpc CreateUserAccount(UserAccount) returns (UserResponse);
+  rpc GetUserAccount(GetUserRequest) returns (UserAccount);
+  rpc UpdateUserAccount(UserAccount) returns (UserResponse);
+
+  rpc CreateUserProfile(UserProfile) returns (UserResponse);
+  rpc GetUserProfile(UserProfile) returns (UserProfile);
+  rpc ListUserProfile(GetUserRequest) returns (ListUserProfileResponse);
+  rpc UpdateUserProfile(UserProfile) returns (UserResponse);
+  rpc DeleteUserProfile(GetUserRequest) returns (UserResponse);
+
+  rpc ImportUserProfileFromCV(UserCVProfile) returns (UserResponse);
+  rpc CreateUserCVProfile(UserCVProfile) returns (UserResponse);
+  rpc GetUserCVProfile(GetUserRequest) returns (UserCVProfile);
+
+}

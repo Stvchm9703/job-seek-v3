@@ -1,0 +1,102 @@
+syntax = "proto3";
+package job_seek.job_apply;
+
+import "job-search.proto";
+
+option go_package = "job-seek/pkg/protos";
+
+enum JobStatus {
+  PENDING = 0;
+  SENT = 1;
+  ACCEPTED = 2;
+  REJECTED = 3;
+  CANCELLED = 4;
+}
+
+message JobResponse { string message = 1; }
+
+message JobApply {
+  string job_id = 1;
+  string user_id = 2;
+  optional JobStatus status = 3;
+  optional string created_at = 4;
+  optional string updated_at = 5;
+  optional string cover_letter = 6;
+  optional string cv_content = 7;
+  optional bytes cv_file = 8;
+  optional job_seek.job_search.Job job = 9;
+  // for update
+  optional string deleted_at = 10;
+  optional string message = 11;
+}
+
+message GetJobApplyRequest {
+  optional string job_id = 1;
+  optional string user_id = 2;
+  repeated JobStatus status = 3;
+  optional int32 page_number = 4;
+  optional int32 page_size = 5;
+}
+
+message GetJobApplyResponse {
+  repeated JobApply job_applies = 1;
+  optional int32 total_count = 2;
+  optional int32 page_number = 3;
+  optional int32 total_page = 4;
+  optional string message = 5;
+  optional string request_status = 6;
+}
+
+// service JobApplyService {
+//   rpc ApplyJob (JobApply) returns (JobResponse);
+//   rpc UpdateJobApply (JobApply) returns (JobResponse);
+//   rpc GetJobApply (GetJobApplyRequest) returns (GetJobApplyResponse) ;
+// }
+
+message JobBookmark {
+  string job_id = 1;
+  string user_id = 2;
+  optional string created_at = 3;
+  optional string updated_at = 4;
+  optional string deleted_at = 5;
+  optional job_seek.job_search.Job job = 6;
+}
+
+message JobBookmarkRequest {
+  optional string job_id = 1;
+  optional string user_id = 2;
+  optional bool is_deleted = 3;
+  optional bool should_show_all = 4;
+}
+
+message JobBookmarkResponse { string message = 1; }
+
+message ListJobBookmarkResponse {
+  repeated JobBookmark bookmarked_jobs = 1;
+  optional int32 total_count = 2;
+  optional int32 page_number = 3;
+  optional int32 total_page = 4;
+  optional string message = 5;
+  optional string request_status = 6;
+}
+
+service JobExtendsionService {
+  // job apply
+
+  // should at least:   job_id and user_id
+  rpc ApplyJob(JobApply) returns (JobResponse);
+  // should at least:   job_id and user_id
+  rpc UpdateJobApply(JobApply) returns (JobResponse);
+  // should at least: user_id
+  rpc ListJobApply(GetJobApplyRequest) returns (GetJobApplyResponse);
+  // should at least: job_id and user_ids
+  rpc GetJobApply(GetJobApplyRequest) returns (JobApply);
+
+  // bookmark job
+  // should at least:   job_id and user_id
+  rpc JobBookmark(JobBookmarkRequest) returns (JobBookmarkResponse);
+  // should at least:   user_id
+  rpc ListJobBookmark(JobBookmarkRequest) returns (ListJobBookmarkResponse);
+  // should at least:   job_id and user_id
+  rpc DeleteJobBookmark(JobBookmarkRequest) returns (JobBookmarkResponse);
+}

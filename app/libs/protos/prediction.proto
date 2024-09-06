@@ -1,0 +1,76 @@
+syntax = "proto3";
+package job_seek.prediction;
+import "job-search.proto";
+import "user-management.proto";
+option go_package = "job-seek/pkg/protos";
+
+message JobMatchScore{
+  string user_id = 1;
+  string job_id = 2;
+  float predict_score = 3;
+  
+  // should be inside the job details
+  repeated job_seek.user_management.PreferenceKeyword hitted_keywords = 4;
+  optional job_seek.job_search.Job job = 5;
+  optional job_seek.user_management.UserProfile user_profile = 6;
+}
+
+
+message SurveyUserPerfenceRequest {
+  string user_id = 1;
+  string survey_id = 2;
+  repeated job_seek.user_management.PreferenceKeyword keywords = 3;
+}
+
+message SurveyJobPerfenceRequest{
+  string user_id = 1;
+  string survey_id = 2;
+  repeated JobMatchScore job_score = 3;
+}
+
+message ExtractKeywords{
+  string user_id = 1;
+  string session_id = 2;
+  optional job_seek.user_management.UserProfile user_profile = 3;
+  optional job_seek.job_search.Job job = 4;
+}
+
+message GenerateCoverLetterRequest{
+  string user_id = 1;
+  string job_id = 2;
+  string session_id = 3;
+  optional job_seek.user_management.UserProfile user_profile = 4;
+  optional job_seek.job_search.Job job = 5;
+}
+
+message GenerateCoverLetterResponse{
+  string user_id = 1;
+  string job_id = 2;
+  string session_id = 3;
+  string content = 4;
+}
+
+message GetSurveyJobRequest{
+  string user_id = 1;
+  string survey_id = 2;
+}
+
+message GetSurveyJobResponse{
+  string user_id = 1;
+  string survey_id = 2;
+  repeated job_seek.job_search.Job jobs = 3;
+}
+
+service PredictionService {
+  // rpc SurveyUserPersona() returns (UserResponse);
+  rpc SurveyUserPerfence(SurveyUserPerfenceRequest) returns (job_seek.user_management.UserResponse);
+  rpc GetSurveyJob(GetSurveyJobRequest) returns (GetSurveyJobResponse);
+  rpc SurveyJobPerfence(SurveyJobPerfenceRequest) returns (job_seek.user_management.UserResponse);
+  rpc PredictJobMatchScore(JobMatchScore) returns (JobMatchScore);
+  
+  rpc ExtractJobKeywords(ExtractKeywords) returns (ExtractKeywords);
+  rpc ExtractUserProfileKeywords(ExtractKeywords) returns (ExtractKeywords);
+  
+  rpc GenerateCoverLetter(GenerateCoverLetterRequest) returns (GenerateCoverLetterResponse);
+  rpc GenerateCV(GenerateCoverLetterRequest) returns (GenerateCoverLetterResponse);
+}
