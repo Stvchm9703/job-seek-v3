@@ -7,7 +7,7 @@ option go_package = "job-seek/pkg/protos";
 
 message GetUserRequest {
   optional string reference_id = 1;
-  optional  string user_id = 2;
+  optional string user_id = 2;
   optional string user_name = 3;
   optional string user_email = 4;
   optional string user_phone = 5;

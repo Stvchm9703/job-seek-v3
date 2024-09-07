@@ -1,0 +1,5 @@
+{
+  "python.languageServer": "Pylance",
+
+  "python.defaultInterpreterPath" : "${workspaceFolder}/.pixi/envs/default/bin/python",
+}
