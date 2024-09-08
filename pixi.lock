@@ -2569,7 +2569,7 @@ packages:
   name: job-seek-v3
   version: 0.1.0
   path: .
-  sha256: 8315476c6f5bb04853bb052a958f03aeac2ee0063941a551bf797b39428cb84b
+  sha256: 5fe08538848e3159c1edf39603fd75f8efd69e14147c36fa3a41607244b5a88f
   requires_dist:
   - surrealdb
   - grpcio

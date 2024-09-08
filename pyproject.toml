@@ -32,7 +32,8 @@ platforms = ["osx-arm64", "linux-64"]
 job_seek_v3 = { path = ".", editable = true }
 
 [tool.pixi.tasks]
-run-service = "python app/service_prediction_main.py"
+run-pred-svc = "python app/service_prediction_main.py"
+run-user-svc = "python app/service_user_management_main.py"
 run-twirp = "python app/service_prediction_main.py"
 generate-grpc = "python -m grpc_tools.protoc -I=app/libs/protos --python_betterproto_out=app/libs/protos app/libs/protos/*.proto"
 generate-twirp = "python -m grpc_tools.protoc -I=app/libs/protos --python_out=app/libs/twirp_protos --twirpy_out=app/libs/twirp_protos app/libs/protos/*.proto"
