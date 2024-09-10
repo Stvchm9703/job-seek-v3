@@ -1,4 +1,4 @@
-import datetime
+from datetime import datetime, timezone
 import surrealdb
 import sys
 
@@ -7,9 +7,7 @@ from prediction_pb2 import *
 from user_management_pb2 import *
 
 
-async def create_survey_user_preference(
-    connection: surrealdb.Surreal, dataset: SurveyUserPerfenceRequest
-):
+async def create_survey_user_preference(connection: surrealdb.Surreal, dataset):
     user_profile = await connection.select(f"UserProfile:{dataset.user_id}")
 
     if user_profile is None:
@@ -30,35 +28,17 @@ async def create_survey_user_preference(
         )
 
         print(keyword_id)
-        keyword_list.append(keyword_id)
+        keyword_list.append(keyword_id[0]["id"])
 
     survey_user_preference_id = await connection.create(
         "SurveyUserPreference",
         {
             "UserId": user_profile.user_id,
-            "Keywords": list(map(lambda x: f"PreferenceKeyword:{x['id']}", keyword_list)),
-            "CreatedAt": datetime.now(),
+            "Keywords": keyword_list,
+            "CreatedAt": datetime.now(timezone.utc).astimezone().isoformat(),
         },
     )
 
     print(survey_user_preference_id)
 
-    return True
-
-
-async def list_user_profile(connection,  user_id: str):
-    if user_id == "":
-        raise Exception("User ID is required")
-
-    result = await connection.query(
-        f"""
-SELECT *,
-(SELECT * FROM PreferenceKeyword  WHERE id in $parent.Keywords ) AS Keywords
-FROM UserProfile:{user_id}
-"""
-    )
-
-    if result is None:
-        raise Exception("Cannot find user profile")
-
-    return result['Results']
+    return survey_user_preference_id[0]

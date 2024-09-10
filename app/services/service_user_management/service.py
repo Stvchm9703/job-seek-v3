@@ -1,14 +1,7 @@
 import traceback
 from libs.twirp_protos import user_management_twirp
 
-# from libs.protos.job_seek.user_management import UserProfile, PreferenceKeyword
-
-# from libs.protos.job_seek.prediction import SurveyUserPerfenceRequest
 from libs.database import init_db
-
-# prediction_twirp._sym_db.RegisterMessage(UserResponse)
-# prediction_twirp._sym_db.RegisterMessage(SurveyUserPerfenceRequest)
-
 
 import sys
 
@@ -20,6 +13,7 @@ from user_management_pb2 import (
     GetUserRequest,
     ListUserProfileResponse,
     UserResponse,
+    PreferenceKeyword,
 )
 
 
@@ -29,14 +23,7 @@ import twirp.errors as errors
 import libs.database.queries.user_account as ua_queries
 import libs.database.queries.user_profile as up_queries
 
-
-def NotFoundError(argument):
-    return TwirpServerException(
-        code=errors.Errors.NotFound,
-        message="cannot found the result in {}".format(argument),
-        meta={"argument": argument},
-    )
-
+from services import NotFoundError 
 
 class UserManagementService(object):
     __db_conn__ = None
@@ -113,7 +100,7 @@ class UserManagementService(object):
                 status="success",
             )
         except Exception as e:
-            print("exception ", e)
+            # print("exception ", e)
             # print(e.__cause__)
             traceback.print_exc()
             raise InvalidArgument(argument="Create user profile failed", error=e)

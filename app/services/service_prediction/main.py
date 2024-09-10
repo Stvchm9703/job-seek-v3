@@ -25,45 +25,7 @@ import twirp
 from twirp.asgi import TwirpASGIApp
 from twirp.exceptions import InvalidArgument
 
-
-class PredictionService(object):
-
-    async def SurveyUserPerfence(
-        self, context, request: SurveyUserPerfenceRequest
-    ) -> UserResponse:
-        print("survey_user_perfence")
-        print(request)
-
-        try:
-            await store_survey_user_perfence(request)
-        except Exception as e:
-            print(e)
-
-        return UserResponse(
-            message="Hello, World!",
-        )
-
-    async def GetSurveyJob(self, context, request):
-        pass
-
-    async def SurveyJobPerfence(self, context, request):
-        pass
-
-    async def PredictJobMatchScore(self, context, request):
-        pass
-
-    async def ExtractJobKeywords(self, context, request):
-        pass
-
-    async def ExtractUserProfileKeywords(self, context, request):
-        pass
-
-    async def GenerateCoverLetter(self, context, request):
-        pass
-
-    async def GenerateCV(self, context, request):
-        pass
-
+from .service import PredictionService
 
 def main():
     service = PredictionServiceServer(
