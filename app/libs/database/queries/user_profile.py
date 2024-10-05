@@ -49,7 +49,8 @@ async def create_user_profile(connection: surrealdb.Surreal, dataset) -> str:
             "UserId": dataset.user_id,
         },
     )
-    return result[0]
+    # return result[0]
+    return result
 
 
 async def get_user_profile(connection: surrealdb.Surreal, profile_id: str):

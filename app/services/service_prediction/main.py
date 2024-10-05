@@ -2,7 +2,7 @@ import grpc
 import grpc._utilities
 import grpclib
 
-from .survey_user_perfence import store_survey_user_perfence
+# from .survey_user_perfence import store_survey_user_perfence
 
 from libs.twirp_protos import prediction_twirp
 from libs.twirp_protos.prediction_twirp import PredictionServiceServer

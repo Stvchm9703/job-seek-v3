@@ -2,11 +2,13 @@ import datetime
 from typing import Union
 import surrealdb
 import sys
-
+import pprint
 import libs.protos.job_seek.user_management as um_pb
 
 
 async def create_user_account(connection: surrealdb.Surreal, dataset) -> str:
+    # print("create_user_account in db")
+    # pprint.pprint(dataset)
     result = await connection.create(
         "UserAccount",
         {
@@ -17,19 +19,20 @@ async def create_user_account(connection: surrealdb.Surreal, dataset) -> str:
             "UserAddress": dataset.user_address,
         },
     )
-    return result[0]
+    # print(result)
+    return result
 
 
 async def get_user_account(
     connection: surrealdb.Surreal, user_id: str
 ) -> um_pb.UserAccount:
-    print("get_user_account in db", user_id)
+    # print("get_user_account in db", user_id)
     if "UserAccount:" in user_id:
         result = await connection.select(user_id)
     elif user_id != "":
         result = await connection.select(f"UserAccount:{user_id}")
 
-    print(result)
+    # print(result)
 
     return result
 
@@ -42,6 +45,7 @@ async def search_user_account(
         f"SELECT * FROM UserAccount WHERE user_name = $user_name OR user_email = $user_email OR user_phone = $user_phone",
         dataset,
     )
+    # print(result)
     return result
 
 

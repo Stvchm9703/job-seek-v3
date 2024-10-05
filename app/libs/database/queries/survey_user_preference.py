@@ -8,14 +8,18 @@ from user_management_pb2 import *
 
 
 async def create_survey_user_preference(connection: surrealdb.Surreal, dataset):
-    user_profile = await connection.select(f"UserProfile:{dataset.user_id}")
+    user_profile_redsult = await connection.select(f"UserProfile:{dataset.user_id}")
+    user_profile = user_profile_redsult[0]
 
-    if user_profile is None:
+    if user_profile_redsult is None or user_profile is None or len(user_profile) == 0:
         raise Exception("Cannot find user profile")
+
+    print(user_profile)
 
     keyword_list = []
 
     for kwt_set in dataset.keywords:
+        
         keyword_id = await connection.create(
             f"PreferenceKeyword",
             {

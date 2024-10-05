@@ -1,5 +1,5 @@
+from pprint import pprint
 import traceback
-from libs.twirp_protos import user_management_twirp
 
 from libs.database import init_db
 
@@ -23,7 +23,12 @@ import twirp.errors as errors
 import libs.database.queries.user_account as ua_queries
 import libs.database.queries.user_profile as up_queries
 
-from services import NotFoundError 
+from services import NotFoundError
+
+from .utils import thread_process_job_search_request
+
+from libs.job_search_svc_client import job_search as js_svc
+from google.protobuf.json_format import MessageToDict
 
 class UserManagementService(object):
     __db_conn__ = None
@@ -40,6 +45,7 @@ class UserManagementService(object):
     async def CreateUserAccount(self, context, request: UserAccount) -> UserResponse:
         await self.check_db()
         try:
+            # print("CreateUserAccount", request)
             result = await ua_queries.create_user_account(self.__db_conn__, request)
             return UserResponse(
                 message="created user",
@@ -53,12 +59,15 @@ class UserManagementService(object):
     async def GetUserAccount(self, context, request: GetUserRequest) -> UserAccount:
         await self.check_db()
         try:
-            print("GetUserAccount", request)
-            result = await ua_queries.get_user_account(
-                self.__db_conn__, request.user_id
-            )
+            pt_msg = MessageToDict(request)
+            # print("GetUserAccount", pt_msg)
+            result = await ua_queries.get_user_account(self.__db_conn__, request.user_id)
+            # print("request", request)
+
+            # result = await ua_queries.search_user_account(self.__db_conn__, pt_msg)
             if result is None:
                 raise NotFoundError(request)
+
             return UserAccount(
                 id=result["id"],
                 user_name=result["UserName"],
@@ -89,11 +98,14 @@ class UserManagementService(object):
     # UserProfile
     async def CreateUserProfile(self, context, request: UserProfile) -> UserResponse:
         print("CreateUserProfile")
-        print(request)
+        # print(request)
 
         await self.check_db()
         try:
             result = await up_queries.create_user_profile(self.__db_conn__, request)
+
+            await thread_process_job_search_request(request)
+
             return UserResponse(
                 message=f"success create user profile, id:{result['id']}, user_id:{result['UserId']}",
                 user_id=result["id"],
@@ -114,28 +126,28 @@ class UserManagementService(object):
                 raise NotFoundError(request)
 
             keywords = []
-            for kw in result['Keywords']:
+            for kw in result["Keywords"]:
                 keywords.append(
                     PreferenceKeyword(
-                        kw_id=kw['id'],
-                        user_id=kw['UserId'],
-                        keyword=kw['Keyword'],
-                        value=kw['Value'],
-                        type=kw['Type'],
-                        is_positive=kw['IsPositive'],
+                        kw_id=kw["id"],
+                        user_id=kw["UserId"],
+                        keyword=kw["Keyword"],
+                        value=kw["Value"],
+                        type=kw["Type"],
+                        is_positive=kw["IsPositive"],
                     )
                 )
 
             return UserProfile(
-                id=result['id'],
-                user_id=result['UserId'],
-                title=result['Title'],
-                description=result['Description'],
-                position=result['Position'],
-                company=result['Company'],
-                start_date=result['StartDate'],
-                end_date=result['EndDate'],
-                salary=result['Salary'],
+                id=result["id"],
+                user_id=result["UserId"],
+                title=result["Title"],
+                description=result["Description"],
+                position=result["Position"],
+                company=result["Company"],
+                start_date=result["StartDate"],
+                end_date=result["EndDate"],
+                salary=result["Salary"],
                 keywords=keywords,
             )
         except Exception as e:
@@ -151,7 +163,7 @@ class UserManagementService(object):
             result = await up_queries.list_user_profile(
                 self.__db_conn__, request.user_id
             )
-            print("ListUserProfile", result)
+            # print("ListUserProfile", result)
             if result is None:
                 raise NotFoundError(request)
 
@@ -162,32 +174,33 @@ class UserManagementService(object):
             # profiles = []
             for prf in result:
                 keyword = []
-                for kw in prf['Keywords']:
+                for kw in prf["Keywords"]:
                     keyword.append(
                         PreferenceKeyword(
-                            kw_id=kw['id'],
-                            user_id=kw['UserId'],
-                            keyword=kw['Keyword'],
-                            value=kw['Value'],
-                            type=kw['Type'],
-                            is_positive=kw['IsPositive'],
+                            kw_id=kw["id"],
+                            user_id=kw["UserId"],
+                            keyword=kw["Keyword"],
+                            value=kw["Value"],
+                            type=kw["Type"],
+                            is_positive=kw["IsPositive"],
                         )
                     )
                 msg_pack.profiles.append(
                     UserProfile(
-                        id=prf['id'],
-                        user_id=prf['UserId'],
-                        title=prf['Title'],
-                        position=prf['Position'],
-                        description=prf['Description'],
-                        company=prf['Company'],
-                        start_date=prf['StartDate'],
-                        end_date=prf['EndDate'],
-                        salary=prf['Salary'],
+                        id=prf["id"],
+                        user_id=prf["UserId"],
+                        title=prf["Title"],
+                        position=prf["Position"],
+                        description=prf["Description"],
+                        company=prf["Company"],
+                        start_date=prf["StartDate"],
+                        end_date=prf["EndDate"],
+                        salary=prf["Salary"],
                         company_detail=None,
                         keywords=keyword,
                     )
                 )
+            pprint(msg_pack)
 
             return msg_pack
 
@@ -200,9 +213,10 @@ class UserManagementService(object):
         await self.check_db()
         try:
             result = await up_queries.update_user_profile(self.__db_conn__, request)
+                
             return UserResponse(
                 message=f"success create user profile, id:{result['id']}, user_id:{result['UserId']}",
-                user_id=result['id'],
+                user_id=result["id"],
                 status="success",
             )
         except Exception as e:
@@ -210,19 +224,20 @@ class UserManagementService(object):
             raise InvalidArgument(argument="Create user profile failed", error=e)
 
     async def DeleteUserProfile(self, context, request: GetUserRequest) -> UserResponse:
-        print(request)
-
+        print("DeleteUserProfile")
         await self.check_db()
         try:
-            result = await up_queries.delete_user_profile(self.__db_conn__, request.id)
+            result = await up_queries.delete_user_profile(
+                self.__db_conn__, request.reference_id
+            )
             return UserResponse(
-                message=f"success create user profile, id:{request.id}, user_id:{request.user_id}",
-                user_id=result.id,
+                message=f"success delete user profile, id:{request.reference_id}, user_id:{request.user_id}",
+                user_id=request.reference_id,
                 status="success",
             )
         except Exception as e:
             print("exception ", e)
-            raise InvalidArgument(argument="Create user profile failed", error=e)
+            raise InvalidArgument(argument="delete user profile failed", error=e)
 
     # UserCVProfile
     async def ImportUserProfileFromCV(
@@ -234,8 +249,8 @@ class UserManagementService(object):
         self, context, request: UserCVProfile
     ) -> UserResponse:
         raise InvalidArgument("Not implemented")
-        return UserResponse()
+        # return UserResponse()
 
     async def GetUserCVProfile(self, context, request: GetUserRequest) -> UserCVProfile:
         raise InvalidArgument("Not implemented")
-        return UserCVProfile()
+        # return UserCVProfile()

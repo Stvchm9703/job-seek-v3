@@ -1,14 +1,18 @@
 import surrealdb
+import os
+import pprint
+from dotenv import load_dotenv
+load_dotenv()
 
-DB_HOST = "192.168.0.102"
-DB_PORT = 8654
-DB_NS = "job-seek"
-DB_DATABASE = "development"
+DB_HOST = os.environ.get("DB_HOST") or "127.0.0.1"
+DB_PORT = os.environ.get("DB_PORT") or 8654
+DB_NS = os.environ.get("DB_NS") or "job-seek"
+DB_DATABASE = os.environ.get("DB_DATABASE") or "development"
 # DB_USER = "job_seek_prediction_service"
 # DB_PASS = "jobseek_prediction"
 
-DB_USER = "root"
-DB_PASS = "root"
+DB_USER = os.environ.get("DB_USER") or "root"
+DB_PASS = os.environ.get("DB_PASS") or "root"
 
 
 async def init_db():

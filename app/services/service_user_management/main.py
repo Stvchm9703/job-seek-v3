@@ -26,6 +26,7 @@ def main():
         reload=True,
         log_level="debug",
         access_log=True,
+        reload_dirs=["app/services/service_user_management", "app/libs"],
     )
     server = uvicorn.Server(config)
 

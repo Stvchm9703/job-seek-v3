@@ -2,6 +2,7 @@ import traceback
 
 # import prediction_twirp
 from twirp.exceptions import InvalidArgument
+import services.service_prediction.subprocess as sp
 import libs.database.queries.user_account as ua_queries
 import libs.database.queries.user_profile as up_queries
 import libs.database.queries.survey_user_preference as sup_queries
@@ -13,7 +14,6 @@ import sys
 sys.path.append("app/libs/twirp_protos")
 from prediction_pb2 import (
     SurveyUserPerfenceRequest,
-    JobSearchRequest,
     GetSurveyJobRequest,
     GetSurveyJobResponse,
 )
@@ -39,13 +39,15 @@ class PredictionService(object):
         print("survey_user_perfence")
         print(request)
 
-        await self.check_db()
+        await self.check_db_conn()
 
         try:
             result = await sup_queries.create_survey_user_preference(
                 self.__db_conn__, request
             )
-            
+
+            # jobList = await sp.frist_patch_job_search_request(self.__db_conn__, request)
+
             return UserResponse(
                 message="created survey user preference",
                 user_id=result["id"],
@@ -69,17 +71,15 @@ class PredictionService(object):
             result = await sup_queries.get_survey_job(self.__db_conn__, request)
 
             return GetSurveyJobResponse(
-                user_id = request.user_id,
-                survey_id = request.survey_id,
-                jobs = [],
+                user_id=request.user_id,
+                survey_id=request.survey_id,
+                jobs=[],
             )
 
         except Exception as e:
             print("exception", e)
             traceback.print_exc()
             raise NotFoundError(request)
-
-
 
     async def SurveyJobPerfence(self, context, request):
         return UnimplementedError("SurveyJobPerfence")
