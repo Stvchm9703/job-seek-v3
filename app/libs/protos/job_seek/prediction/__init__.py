@@ -101,10 +101,45 @@ class GetSurveyJobRequest(betterproto.Message):
 
 
 @dataclass(eq=False, repr=False)
+class SurveyJobSet(betterproto.Message):
+    job_id: str = betterproto.string_field(1)
+    user_preference_score: float = betterproto.float_field(2)
+    features: "SurveyJobFeature" = betterproto.message_field(3)
+
+
+@dataclass(eq=False, repr=False)
+class SurveyJobFeature(betterproto.Message):
+    adjusted_job_title_similarity: float = betterproto.float_field(1)
+    adjusted_job_industry_similarity: float = betterproto.float_field(2)
+    adjusted_company_size: float = betterproto.float_field(3)
+    adjusted_job_sector: float = betterproto.float_field(4)
+    adjusted_company_culture: float = betterproto.float_field(5)
+    adjusted_work_model: float = betterproto.float_field(6)
+    adjusted_salary_expectation: float = betterproto.float_field(7)
+    adjusted_role_type: float = betterproto.float_field(8)
+    adjusted_distance_score: float = betterproto.float_field(9)
+    pay_average_norm: float = betterproto.float_field(10)
+    descriptions_similarity_to_resume: float = betterproto.float_field(11)
+
+
+@dataclass(eq=False, repr=False)
+class SurveyJobQuestionSet(betterproto.Message):
+    pair_id: str = betterproto.string_field(1)
+    job_a: "SurveyJobSet" = betterproto.message_field(2)
+    job_b: "SurveyJobSet" = betterproto.message_field(3)
+    similarities: List[str] = betterproto.string_field(4)
+    differences: List[str] = betterproto.string_field(5)
+    overall_similarity: Optional[float] = betterproto.float_field(
+        6, optional=True, group="_overall_similarity"
+    )
+
+
+@dataclass(eq=False, repr=False)
 class GetSurveyJobResponse(betterproto.Message):
     user_id: str = betterproto.string_field(1)
     survey_id: str = betterproto.string_field(2)
     jobs: List["_job_search__.Job"] = betterproto.message_field(3)
+    survey_job_questions: List["SurveyJobQuestionSet"] = betterproto.message_field(4)
 
 
 class PredictionServiceStub(betterproto.ServiceStub):

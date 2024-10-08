@@ -2,7 +2,7 @@ syntax = "proto3";
 package job_seek.job_search;
 
 option go_package = "job-seek/pkg/protos";
-// option python_package = "job_seek.job_search";
+
 /**
 
         SiteKey        string `url:"siteKey", json:"sitekey"`

@@ -2,9 +2,7 @@ from libs.twirp_protos import user_management_twirp
 
 # from libs.protos.job_seek.user_management import UserResponse
 # from libs.protos.job_seek.prediction import SurveyUserPerfenceRequest
-from libs.database import init_db
 import uvicorn
-import sys
 
 from twirp.asgi import TwirpASGIApp
 from twirp.exceptions import InvalidArgument

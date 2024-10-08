@@ -55,10 +55,40 @@ message GetSurveyJobRequest{
   string survey_id = 2;
 }
 
+message SurveyJobSet{
+  string job_id = 1;
+  float user_preference_score = 2;
+  SurveyJobFeature features = 3;
+}
+
+message SurveyJobFeature{
+  float adjusted_job_title_similarity = 1;
+  float adjusted_job_industry_similarity = 2;
+  float adjusted_company_size = 3;
+  float adjusted_job_sector = 4;
+  float adjusted_company_culture = 5;
+  float adjusted_work_model = 6;
+  float adjusted_salary_expectation = 7;
+  float adjusted_role_type = 8;
+  float adjusted_distance_score = 9;
+  float pay_average_norm = 10;
+  float descriptions_similarity_to_resume = 11;
+}
+
+message SurveyJobQuestionSet {
+  string pair_id = 1;
+  SurveyJobSet job_a = 2;
+  SurveyJobSet job_b = 3;
+  repeated string similarities = 4;
+  repeated string differences = 5;
+  optional float overall_similarity = 6;
+}
+
 message GetSurveyJobResponse{
   string user_id = 1;
   string survey_id = 2;
   repeated job_seek.job_search.Job jobs = 3;
+  repeated SurveyJobQuestionSet survey_job_questions = 4;
 }
 
 service PredictionService {

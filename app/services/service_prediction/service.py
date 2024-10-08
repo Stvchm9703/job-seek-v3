@@ -1,3 +1,4 @@
+from pprint import pprint
 import traceback
 
 # import prediction_twirp
@@ -7,7 +8,7 @@ import libs.database.queries.user_account as ua_queries
 import libs.database.queries.user_profile as up_queries
 import libs.database.queries.survey_user_preference as sup_queries
 from libs.database import init_db
-
+import json
 
 import sys
 
@@ -30,7 +31,7 @@ class PredictionService(object):
 
     async def check_db_conn(self):
         if self.__db_conn__ is None:
-            self.__db_conn__ = await init_db()
+            self.__db_conn__ = init_db()
         return True
 
     async def SurveyUserPerfence(
@@ -68,7 +69,13 @@ class PredictionService(object):
         await self.check_db_conn()
 
         try:
-            result = await sup_queries.get_survey_job(self.__db_conn__, request)
+            # result = await sup_queries.get_survey_job(self.__db_conn__, request)
+            sample_data = json.load(
+                open("app/services/service_prediction/sample_result.json")
+            )
+            pprint(sample_data)
+            for job in sample_data["jobs"]:
+                job["job_id"] = str(job["job_id"])
 
             return GetSurveyJobResponse(
                 user_id=request.user_id,

@@ -7,369 +7,310 @@ from google.protobuf import symbol_database as _symbol_database
 from twirp.base import Endpoint
 from twirp.server import TwirpServer
 from twirp.client import TwirpClient
-
 try:
-    from twirp.async_client import AsyncTwirpClient
-
-    _async_available = True
+	from twirp.async_client import AsyncTwirpClient
+	_async_available = True
 except ModuleNotFoundError:
-    _async_available = False
+	_async_available = False
 
 _sym_db = _symbol_database.Default()
 
-
 class UserManagementServiceServer(TwirpServer):
 
-    def __init__(self, *args, service, server_path_prefix="/twirp"):
-        super().__init__(service=service)
-        self._prefix = (
-            f"{server_path_prefix}/job_seek.user_management.UserManagementService"
-        )
-        self._endpoints = {
-            "CreateUserAccount": Endpoint(
-                service_name="UserManagementService",
-                name="CreateUserAccount",
-                function=getattr(service, "CreateUserAccount"),
-                input=_sym_db.GetSymbol("job_seek.user_management.UserAccount"),
-                output=_sym_db.GetSymbol("job_seek.user_management.UserResponse"),
-            ),
-            "GetUserAccount": Endpoint(
-                service_name="UserManagementService",
-                name="GetUserAccount",
-                function=getattr(service, "GetUserAccount"),
-                input=_sym_db.GetSymbol("job_seek.user_management.GetUserRequest"),
-                output=_sym_db.GetSymbol("job_seek.user_management.UserAccount"),
-            ),
-            "UpdateUserAccount": Endpoint(
-                service_name="UserManagementService",
-                name="UpdateUserAccount",
-                function=getattr(service, "UpdateUserAccount"),
-                input=_sym_db.GetSymbol("job_seek.user_management.UserAccount"),
-                output=_sym_db.GetSymbol("job_seek.user_management.UserResponse"),
-            ),
-            "CreateUserProfile": Endpoint(
-                service_name="UserManagementService",
-                name="CreateUserProfile",
-                function=getattr(service, "CreateUserProfile"),
-                input=_sym_db.GetSymbol("job_seek.user_management.UserProfile"),
-                output=_sym_db.GetSymbol("job_seek.user_management.UserResponse"),
-            ),
-            "GetUserProfile": Endpoint(
-                service_name="UserManagementService",
-                name="GetUserProfile",
-                function=getattr(service, "GetUserProfile"),
-                input=_sym_db.GetSymbol("job_seek.user_management.UserProfile"),
-                output=_sym_db.GetSymbol("job_seek.user_management.UserProfile"),
-            ),
-            "ListUserProfile": Endpoint(
-                service_name="UserManagementService",
-                name="ListUserProfile",
-                function=getattr(service, "ListUserProfile"),
-                input=_sym_db.GetSymbol("job_seek.user_management.GetUserRequest"),
-                output=_sym_db.GetSymbol(
-                    "job_seek.user_management.ListUserProfileResponse"
-                ),
-            ),
-            "UpdateUserProfile": Endpoint(
-                service_name="UserManagementService",
-                name="UpdateUserProfile",
-                function=getattr(service, "UpdateUserProfile"),
-                input=_sym_db.GetSymbol("job_seek.user_management.UserProfile"),
-                output=_sym_db.GetSymbol("job_seek.user_management.UserResponse"),
-            ),
-            "DeleteUserProfile": Endpoint(
-                service_name="UserManagementService",
-                name="DeleteUserProfile",
-                function=getattr(service, "DeleteUserProfile"),
-                input=_sym_db.GetSymbol("job_seek.user_management.GetUserRequest"),
-                output=_sym_db.GetSymbol("job_seek.user_management.UserResponse"),
-            ),
-            "ImportUserProfileFromCV": Endpoint(
-                service_name="UserManagementService",
-                name="ImportUserProfileFromCV",
-                function=getattr(service, "ImportUserProfileFromCV"),
-                input=_sym_db.GetSymbol("job_seek.user_management.UserCVProfile"),
-                output=_sym_db.GetSymbol("job_seek.user_management.UserResponse"),
-            ),
-            "CreateUserCVProfile": Endpoint(
-                service_name="UserManagementService",
-                name="CreateUserCVProfile",
-                function=getattr(service, "CreateUserCVProfile"),
-                input=_sym_db.GetSymbol("job_seek.user_management.UserCVProfile"),
-                output=_sym_db.GetSymbol("job_seek.user_management.UserResponse"),
-            ),
-            "GetUserCVProfile": Endpoint(
-                service_name="UserManagementService",
-                name="GetUserCVProfile",
-                function=getattr(service, "GetUserCVProfile"),
-                input=_sym_db.GetSymbol("job_seek.user_management.GetUserRequest"),
-                output=_sym_db.GetSymbol("job_seek.user_management.UserCVProfile"),
-            ),
-        }
-
+	def __init__(self, *args, service, server_path_prefix="/twirp"):
+		super().__init__(service=service)
+		self._prefix = F"{server_path_prefix}/job_seek.user_management.UserManagementService"
+		self._endpoints = {
+			"CreateUserAccount": Endpoint(
+				service_name="UserManagementService",
+				name="CreateUserAccount",
+				function=getattr(service, "CreateUserAccount"),
+				input=_sym_db.GetSymbol("job_seek.user_management.UserAccount"),
+				output=_sym_db.GetSymbol("job_seek.user_management.UserResponse"),
+			),
+			"GetUserAccount": Endpoint(
+				service_name="UserManagementService",
+				name="GetUserAccount",
+				function=getattr(service, "GetUserAccount"),
+				input=_sym_db.GetSymbol("job_seek.user_management.GetUserRequest"),
+				output=_sym_db.GetSymbol("job_seek.user_management.UserAccount"),
+			),
+			"UpdateUserAccount": Endpoint(
+				service_name="UserManagementService",
+				name="UpdateUserAccount",
+				function=getattr(service, "UpdateUserAccount"),
+				input=_sym_db.GetSymbol("job_seek.user_management.UserAccount"),
+				output=_sym_db.GetSymbol("job_seek.user_management.UserResponse"),
+			),
+			"CreateUserProfile": Endpoint(
+				service_name="UserManagementService",
+				name="CreateUserProfile",
+				function=getattr(service, "CreateUserProfile"),
+				input=_sym_db.GetSymbol("job_seek.user_management.UserProfile"),
+				output=_sym_db.GetSymbol("job_seek.user_management.UserResponse"),
+			),
+			"GetUserProfile": Endpoint(
+				service_name="UserManagementService",
+				name="GetUserProfile",
+				function=getattr(service, "GetUserProfile"),
+				input=_sym_db.GetSymbol("job_seek.user_management.UserProfile"),
+				output=_sym_db.GetSymbol("job_seek.user_management.UserProfile"),
+			),
+			"ListUserProfile": Endpoint(
+				service_name="UserManagementService",
+				name="ListUserProfile",
+				function=getattr(service, "ListUserProfile"),
+				input=_sym_db.GetSymbol("job_seek.user_management.GetUserRequest"),
+				output=_sym_db.GetSymbol("job_seek.user_management.ListUserProfileResponse"),
+			),
+			"UpdateUserProfile": Endpoint(
+				service_name="UserManagementService",
+				name="UpdateUserProfile",
+				function=getattr(service, "UpdateUserProfile"),
+				input=_sym_db.GetSymbol("job_seek.user_management.UserProfile"),
+				output=_sym_db.GetSymbol("job_seek.user_management.UserResponse"),
+			),
+			"DeleteUserProfile": Endpoint(
+				service_name="UserManagementService",
+				name="DeleteUserProfile",
+				function=getattr(service, "DeleteUserProfile"),
+				input=_sym_db.GetSymbol("job_seek.user_management.GetUserRequest"),
+				output=_sym_db.GetSymbol("job_seek.user_management.UserResponse"),
+			),
+			"ImportUserProfileFromCV": Endpoint(
+				service_name="UserManagementService",
+				name="ImportUserProfileFromCV",
+				function=getattr(service, "ImportUserProfileFromCV"),
+				input=_sym_db.GetSymbol("job_seek.user_management.UserCVProfile"),
+				output=_sym_db.GetSymbol("job_seek.user_management.UserResponse"),
+			),
+			"CreateUserCVProfile": Endpoint(
+				service_name="UserManagementService",
+				name="CreateUserCVProfile",
+				function=getattr(service, "CreateUserCVProfile"),
+				input=_sym_db.GetSymbol("job_seek.user_management.UserCVProfile"),
+				output=_sym_db.GetSymbol("job_seek.user_management.UserResponse"),
+			),
+			"GetUserCVProfile": Endpoint(
+				service_name="UserManagementService",
+				name="GetUserCVProfile",
+				function=getattr(service, "GetUserCVProfile"),
+				input=_sym_db.GetSymbol("job_seek.user_management.GetUserRequest"),
+				output=_sym_db.GetSymbol("job_seek.user_management.UserCVProfile"),
+			),
+		}
 
 class UserManagementServiceClient(TwirpClient):
 
-    def CreateUserAccount(
-        self, *args, ctx, request, server_path_prefix="/twirp", **kwargs
-    ):
-        return self._make_request(
-            url=f"{server_path_prefix}/job_seek.user_management.UserManagementService/CreateUserAccount",
-            ctx=ctx,
-            request=request,
-            response_obj=_sym_db.GetSymbol("job_seek.user_management.UserResponse"),
-            **kwargs,
-        )
+	def CreateUserAccount(self, *args, ctx, request, server_path_prefix="/twirp", **kwargs):
+		return self._make_request(
+			url=F"{server_path_prefix}/job_seek.user_management.UserManagementService/CreateUserAccount",
+			ctx=ctx,
+			request=request,
+			response_obj=_sym_db.GetSymbol("job_seek.user_management.UserResponse"),
+			**kwargs,
+		)
 
-    def GetUserAccount(
-        self, *args, ctx, request, server_path_prefix="/twirp", **kwargs
-    ):
-        return self._make_request(
-            url=f"{server_path_prefix}/job_seek.user_management.UserManagementService/GetUserAccount",
-            ctx=ctx,
-            request=request,
-            response_obj=_sym_db.GetSymbol("job_seek.user_management.UserAccount"),
-            **kwargs,
-        )
+	def GetUserAccount(self, *args, ctx, request, server_path_prefix="/twirp", **kwargs):
+		return self._make_request(
+			url=F"{server_path_prefix}/job_seek.user_management.UserManagementService/GetUserAccount",
+			ctx=ctx,
+			request=request,
+			response_obj=_sym_db.GetSymbol("job_seek.user_management.UserAccount"),
+			**kwargs,
+		)
 
-    def UpdateUserAccount(
-        self, *args, ctx, request, server_path_prefix="/twirp", **kwargs
-    ):
-        return self._make_request(
-            url=f"{server_path_prefix}/job_seek.user_management.UserManagementService/UpdateUserAccount",
-            ctx=ctx,
-            request=request,
-            response_obj=_sym_db.GetSymbol("job_seek.user_management.UserResponse"),
-            **kwargs,
-        )
+	def UpdateUserAccount(self, *args, ctx, request, server_path_prefix="/twirp", **kwargs):
+		return self._make_request(
+			url=F"{server_path_prefix}/job_seek.user_management.UserManagementService/UpdateUserAccount",
+			ctx=ctx,
+			request=request,
+			response_obj=_sym_db.GetSymbol("job_seek.user_management.UserResponse"),
+			**kwargs,
+		)
 
-    def CreateUserProfile(
-        self, *args, ctx, request, server_path_prefix="/twirp", **kwargs
-    ):
-        return self._make_request(
-            url=f"{server_path_prefix}/job_seek.user_management.UserManagementService/CreateUserProfile",
-            ctx=ctx,
-            request=request,
-            response_obj=_sym_db.GetSymbol("job_seek.user_management.UserResponse"),
-            **kwargs,
-        )
+	def CreateUserProfile(self, *args, ctx, request, server_path_prefix="/twirp", **kwargs):
+		return self._make_request(
+			url=F"{server_path_prefix}/job_seek.user_management.UserManagementService/CreateUserProfile",
+			ctx=ctx,
+			request=request,
+			response_obj=_sym_db.GetSymbol("job_seek.user_management.UserResponse"),
+			**kwargs,
+		)
 
-    def GetUserProfile(
-        self, *args, ctx, request, server_path_prefix="/twirp", **kwargs
-    ):
-        return self._make_request(
-            url=f"{server_path_prefix}/job_seek.user_management.UserManagementService/GetUserProfile",
-            ctx=ctx,
-            request=request,
-            response_obj=_sym_db.GetSymbol("job_seek.user_management.UserProfile"),
-            **kwargs,
-        )
+	def GetUserProfile(self, *args, ctx, request, server_path_prefix="/twirp", **kwargs):
+		return self._make_request(
+			url=F"{server_path_prefix}/job_seek.user_management.UserManagementService/GetUserProfile",
+			ctx=ctx,
+			request=request,
+			response_obj=_sym_db.GetSymbol("job_seek.user_management.UserProfile"),
+			**kwargs,
+		)
 
-    def ListUserProfile(
-        self, *args, ctx, request, server_path_prefix="/twirp", **kwargs
-    ):
-        return self._make_request(
-            url=f"{server_path_prefix}/job_seek.user_management.UserManagementService/ListUserProfile",
-            ctx=ctx,
-            request=request,
-            response_obj=_sym_db.GetSymbol(
-                "job_seek.user_management.ListUserProfileResponse"
-            ),
-            **kwargs,
-        )
+	def ListUserProfile(self, *args, ctx, request, server_path_prefix="/twirp", **kwargs):
+		return self._make_request(
+			url=F"{server_path_prefix}/job_seek.user_management.UserManagementService/ListUserProfile",
+			ctx=ctx,
+			request=request,
+			response_obj=_sym_db.GetSymbol("job_seek.user_management.ListUserProfileResponse"),
+			**kwargs,
+		)
 
-    def UpdateUserProfile(
-        self, *args, ctx, request, server_path_prefix="/twirp", **kwargs
-    ):
-        return self._make_request(
-            url=f"{server_path_prefix}/job_seek.user_management.UserManagementService/UpdateUserProfile",
-            ctx=ctx,
-            request=request,
-            response_obj=_sym_db.GetSymbol("job_seek.user_management.UserResponse"),
-            **kwargs,
-        )
+	def UpdateUserProfile(self, *args, ctx, request, server_path_prefix="/twirp", **kwargs):
+		return self._make_request(
+			url=F"{server_path_prefix}/job_seek.user_management.UserManagementService/UpdateUserProfile",
+			ctx=ctx,
+			request=request,
+			response_obj=_sym_db.GetSymbol("job_seek.user_management.UserResponse"),
+			**kwargs,
+		)
 
-    def DeleteUserProfile(
-        self, *args, ctx, request, server_path_prefix="/twirp", **kwargs
-    ):
-        return self._make_request(
-            url=f"{server_path_prefix}/job_seek.user_management.UserManagementService/DeleteUserProfile",
-            ctx=ctx,
-            request=request,
-            response_obj=_sym_db.GetSymbol("job_seek.user_management.UserResponse"),
-            **kwargs,
-        )
+	def DeleteUserProfile(self, *args, ctx, request, server_path_prefix="/twirp", **kwargs):
+		return self._make_request(
+			url=F"{server_path_prefix}/job_seek.user_management.UserManagementService/DeleteUserProfile",
+			ctx=ctx,
+			request=request,
+			response_obj=_sym_db.GetSymbol("job_seek.user_management.UserResponse"),
+			**kwargs,
+		)
 
-    def ImportUserProfileFromCV(
-        self, *args, ctx, request, server_path_prefix="/twirp", **kwargs
-    ):
-        return self._make_request(
-            url=f"{server_path_prefix}/job_seek.user_management.UserManagementService/ImportUserProfileFromCV",
-            ctx=ctx,
-            request=request,
-            response_obj=_sym_db.GetSymbol("job_seek.user_management.UserResponse"),
-            **kwargs,
-        )
+	def ImportUserProfileFromCV(self, *args, ctx, request, server_path_prefix="/twirp", **kwargs):
+		return self._make_request(
+			url=F"{server_path_prefix}/job_seek.user_management.UserManagementService/ImportUserProfileFromCV",
+			ctx=ctx,
+			request=request,
+			response_obj=_sym_db.GetSymbol("job_seek.user_management.UserResponse"),
+			**kwargs,
+		)
 
-    def CreateUserCVProfile(
-        self, *args, ctx, request, server_path_prefix="/twirp", **kwargs
-    ):
-        return self._make_request(
-            url=f"{server_path_prefix}/job_seek.user_management.UserManagementService/CreateUserCVProfile",
-            ctx=ctx,
-            request=request,
-            response_obj=_sym_db.GetSymbol("job_seek.user_management.UserResponse"),
-            **kwargs,
-        )
+	def CreateUserCVProfile(self, *args, ctx, request, server_path_prefix="/twirp", **kwargs):
+		return self._make_request(
+			url=F"{server_path_prefix}/job_seek.user_management.UserManagementService/CreateUserCVProfile",
+			ctx=ctx,
+			request=request,
+			response_obj=_sym_db.GetSymbol("job_seek.user_management.UserResponse"),
+			**kwargs,
+		)
 
-    def GetUserCVProfile(
-        self, *args, ctx, request, server_path_prefix="/twirp", **kwargs
-    ):
-        return self._make_request(
-            url=f"{server_path_prefix}/job_seek.user_management.UserManagementService/GetUserCVProfile",
-            ctx=ctx,
-            request=request,
-            response_obj=_sym_db.GetSymbol("job_seek.user_management.UserCVProfile"),
-            **kwargs,
-        )
+	def GetUserCVProfile(self, *args, ctx, request, server_path_prefix="/twirp", **kwargs):
+		return self._make_request(
+			url=F"{server_path_prefix}/job_seek.user_management.UserManagementService/GetUserCVProfile",
+			ctx=ctx,
+			request=request,
+			response_obj=_sym_db.GetSymbol("job_seek.user_management.UserCVProfile"),
+			**kwargs,
+		)
 
 
 if _async_available:
+	class AsyncUserManagementServiceClient(AsyncTwirpClient):
 
-    class AsyncUserManagementServiceClient(AsyncTwirpClient):
+		async def CreateUserAccount(self, *, ctx, request, server_path_prefix="/twirp", session=None, **kwargs):
+			return await self._make_request(
+				url=F"{server_path_prefix}/job_seek.user_management.UserManagementService/CreateUserAccount",
+				ctx=ctx,
+				request=request,
+				response_obj=_sym_db.GetSymbol("job_seek.user_management.UserResponse"),
+				session=session,
+				**kwargs,
+			)
 
-        async def CreateUserAccount(
-            self, *, ctx, request, server_path_prefix="/twirp", session=None, **kwargs
-        ):
-            return await self._make_request(
-                url=f"{server_path_prefix}/job_seek.user_management.UserManagementService/CreateUserAccount",
-                ctx=ctx,
-                request=request,
-                response_obj=_sym_db.GetSymbol("job_seek.user_management.UserResponse"),
-                session=session,
-                **kwargs,
-            )
+		async def GetUserAccount(self, *, ctx, request, server_path_prefix="/twirp", session=None, **kwargs):
+			return await self._make_request(
+				url=F"{server_path_prefix}/job_seek.user_management.UserManagementService/GetUserAccount",
+				ctx=ctx,
+				request=request,
+				response_obj=_sym_db.GetSymbol("job_seek.user_management.UserAccount"),
+				session=session,
+				**kwargs,
+			)
 
-        async def GetUserAccount(
-            self, *, ctx, request, server_path_prefix="/twirp", session=None, **kwargs
-        ):
-            return await self._make_request(
-                url=f"{server_path_prefix}/job_seek.user_management.UserManagementService/GetUserAccount",
-                ctx=ctx,
-                request=request,
-                response_obj=_sym_db.GetSymbol("job_seek.user_management.UserAccount"),
-                session=session,
-                **kwargs,
-            )
+		async def UpdateUserAccount(self, *, ctx, request, server_path_prefix="/twirp", session=None, **kwargs):
+			return await self._make_request(
+				url=F"{server_path_prefix}/job_seek.user_management.UserManagementService/UpdateUserAccount",
+				ctx=ctx,
+				request=request,
+				response_obj=_sym_db.GetSymbol("job_seek.user_management.UserResponse"),
+				session=session,
+				**kwargs,
+			)
 
-        async def UpdateUserAccount(
-            self, *, ctx, request, server_path_prefix="/twirp", session=None, **kwargs
-        ):
-            return await self._make_request(
-                url=f"{server_path_prefix}/job_seek.user_management.UserManagementService/UpdateUserAccount",
-                ctx=ctx,
-                request=request,
-                response_obj=_sym_db.GetSymbol("job_seek.user_management.UserResponse"),
-                session=session,
-                **kwargs,
-            )
+		async def CreateUserProfile(self, *, ctx, request, server_path_prefix="/twirp", session=None, **kwargs):
+			return await self._make_request(
+				url=F"{server_path_prefix}/job_seek.user_management.UserManagementService/CreateUserProfile",
+				ctx=ctx,
+				request=request,
+				response_obj=_sym_db.GetSymbol("job_seek.user_management.UserResponse"),
+				session=session,
+				**kwargs,
+			)
 
-        async def CreateUserProfile(
-            self, *, ctx, request, server_path_prefix="/twirp", session=None, **kwargs
-        ):
-            return await self._make_request(
-                url=f"{server_path_prefix}/job_seek.user_management.UserManagementService/CreateUserProfile",
-                ctx=ctx,
-                request=request,
-                response_obj=_sym_db.GetSymbol("job_seek.user_management.UserResponse"),
-                session=session,
-                **kwargs,
-            )
+		async def GetUserProfile(self, *, ctx, request, server_path_prefix="/twirp", session=None, **kwargs):
+			return await self._make_request(
+				url=F"{server_path_prefix}/job_seek.user_management.UserManagementService/GetUserProfile",
+				ctx=ctx,
+				request=request,
+				response_obj=_sym_db.GetSymbol("job_seek.user_management.UserProfile"),
+				session=session,
+				**kwargs,
+			)
 
-        async def GetUserProfile(
-            self, *, ctx, request, server_path_prefix="/twirp", session=None, **kwargs
-        ):
-            return await self._make_request(
-                url=f"{server_path_prefix}/job_seek.user_management.UserManagementService/GetUserProfile",
-                ctx=ctx,
-                request=request,
-                response_obj=_sym_db.GetSymbol("job_seek.user_management.UserProfile"),
-                session=session,
-                **kwargs,
-            )
+		async def ListUserProfile(self, *, ctx, request, server_path_prefix="/twirp", session=None, **kwargs):
+			return await self._make_request(
+				url=F"{server_path_prefix}/job_seek.user_management.UserManagementService/ListUserProfile",
+				ctx=ctx,
+				request=request,
+				response_obj=_sym_db.GetSymbol("job_seek.user_management.ListUserProfileResponse"),
+				session=session,
+				**kwargs,
+			)
 
-        async def ListUserProfile(
-            self, *, ctx, request, server_path_prefix="/twirp", session=None, **kwargs
-        ):
-            return await self._make_request(
-                url=f"{server_path_prefix}/job_seek.user_management.UserManagementService/ListUserProfile",
-                ctx=ctx,
-                request=request,
-                response_obj=_sym_db.GetSymbol(
-                    "job_seek.user_management.ListUserProfileResponse"
-                ),
-                session=session,
-                **kwargs,
-            )
+		async def UpdateUserProfile(self, *, ctx, request, server_path_prefix="/twirp", session=None, **kwargs):
+			return await self._make_request(
+				url=F"{server_path_prefix}/job_seek.user_management.UserManagementService/UpdateUserProfile",
+				ctx=ctx,
+				request=request,
+				response_obj=_sym_db.GetSymbol("job_seek.user_management.UserResponse"),
+				session=session,
+				**kwargs,
+			)
 
-        async def UpdateUserProfile(
-            self, *, ctx, request, server_path_prefix="/twirp", session=None, **kwargs
-        ):
-            return await self._make_request(
-                url=f"{server_path_prefix}/job_seek.user_management.UserManagementService/UpdateUserProfile",
-                ctx=ctx,
-                request=request,
-                response_obj=_sym_db.GetSymbol("job_seek.user_management.UserResponse"),
-                session=session,
-                **kwargs,
-            )
+		async def DeleteUserProfile(self, *, ctx, request, server_path_prefix="/twirp", session=None, **kwargs):
+			return await self._make_request(
+				url=F"{server_path_prefix}/job_seek.user_management.UserManagementService/DeleteUserProfile",
+				ctx=ctx,
+				request=request,
+				response_obj=_sym_db.GetSymbol("job_seek.user_management.UserResponse"),
+				session=session,
+				**kwargs,
+			)
 
-        async def DeleteUserProfile(
-            self, *, ctx, request, server_path_prefix="/twirp", session=None, **kwargs
-        ):
-            return await self._make_request(
-                url=f"{server_path_prefix}/job_seek.user_management.UserManagementService/DeleteUserProfile",
-                ctx=ctx,
-                request=request,
-                response_obj=_sym_db.GetSymbol("job_seek.user_management.UserResponse"),
-                session=session,
-                **kwargs,
-            )
+		async def ImportUserProfileFromCV(self, *, ctx, request, server_path_prefix="/twirp", session=None, **kwargs):
+			return await self._make_request(
+				url=F"{server_path_prefix}/job_seek.user_management.UserManagementService/ImportUserProfileFromCV",
+				ctx=ctx,
+				request=request,
+				response_obj=_sym_db.GetSymbol("job_seek.user_management.UserResponse"),
+				session=session,
+				**kwargs,
+			)
 
-        async def ImportUserProfileFromCV(
-            self, *, ctx, request, server_path_prefix="/twirp", session=None, **kwargs
-        ):
-            return await self._make_request(
-                url=f"{server_path_prefix}/job_seek.user_management.UserManagementService/ImportUserProfileFromCV",
-                ctx=ctx,
-                request=request,
-                response_obj=_sym_db.GetSymbol("job_seek.user_management.UserResponse"),
-                session=session,
-                **kwargs,
-            )
+		async def CreateUserCVProfile(self, *, ctx, request, server_path_prefix="/twirp", session=None, **kwargs):
+			return await self._make_request(
+				url=F"{server_path_prefix}/job_seek.user_management.UserManagementService/CreateUserCVProfile",
+				ctx=ctx,
+				request=request,
+				response_obj=_sym_db.GetSymbol("job_seek.user_management.UserResponse"),
+				session=session,
+				**kwargs,
+			)
 
-        async def CreateUserCVProfile(
-            self, *, ctx, request, server_path_prefix="/twirp", session=None, **kwargs
-        ):
-            return await self._make_request(
-                url=f"{server_path_prefix}/job_seek.user_management.UserManagementService/CreateUserCVProfile",
-                ctx=ctx,
-                request=request,
-                response_obj=_sym_db.GetSymbol("job_seek.user_management.UserResponse"),
-                session=session,
-                **kwargs,
-            )
-
-        async def GetUserCVProfile(
-            self, *, ctx, request, server_path_prefix="/twirp", session=None, **kwargs
-        ):
-            return await self._make_request(
-                url=f"{server_path_prefix}/job_seek.user_management.UserManagementService/GetUserCVProfile",
-                ctx=ctx,
-                request=request,
-                response_obj=_sym_db.GetSymbol(
-                    "job_seek.user_management.UserCVProfile"
-                ),
-                session=session,
-                **kwargs,
-            )
+		async def GetUserCVProfile(self, *, ctx, request, server_path_prefix="/twirp", session=None, **kwargs):
+			return await self._make_request(
+				url=F"{server_path_prefix}/job_seek.user_management.UserManagementService/GetUserCVProfile",
+				ctx=ctx,
+				request=request,
+				response_obj=_sym_db.GetSymbol("job_seek.user_management.UserCVProfile"),
+				session=session,
+				**kwargs,
+			)

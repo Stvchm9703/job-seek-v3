@@ -38,7 +38,7 @@ class UserManagementService(object):
 
     async def check_db(self):
         if self.__db_conn__ is None:
-            self.__db_conn__ = await init_db()
+            self.__db_conn__ = init_db()
         return True
 
     # UserAccount
