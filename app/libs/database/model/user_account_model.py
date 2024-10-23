@@ -35,7 +35,6 @@ CREATE TABLE IF NOT EXISTS public.user_account
 class UserAccountModel(BaseModel):
     class Meta:
         table_name = "user_account"
-      
         schema = "public"
         database = db_conn
     user_name = TextField()

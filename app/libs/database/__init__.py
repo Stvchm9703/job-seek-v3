@@ -3,6 +3,7 @@ import os
 import pprint
 from dotenv import load_dotenv, find_dotenv, get_key
 import subprocess
+
 # from peewee import *
 from playhouse.postgres_ext import PostgresqlExtDatabase
 
@@ -23,13 +24,12 @@ DB_PASS = (
     get_key(dotenv_path=_ENV_FILE, key_to_get="DB_PASS") or "service_user_management"
 )
 
-db_conn = None
+db_conn = PostgresqlExtDatabase(
+    DB_NS, user=DB_USER, password=DB_PASS, host=DB_HOST, port=DB_PORT
+)
 
 
 def init_db():
-    db_conn = PostgresqlExtDatabase(
-        DB_NS, user=DB_USER, password=DB_PASS, host=DB_HOST, port=DB_PORT
-    )
     db_conn.connect()
     return db_conn
 

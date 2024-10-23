@@ -4,10 +4,10 @@ import traceback
 # import prediction_twirp
 from twirp.exceptions import InvalidArgument
 import services.service_prediction.subprocess as sp
-import libs.database.queries.user_account as ua_queries
-import libs.database.queries.user_profile as up_queries
-import libs.database.queries.survey_user_preference as sup_queries
-from libs.database import init_db
+import libs.database_v1.queries.user_account as ua_queries
+import libs.database_v1.queries.user_profile as up_queries
+import libs.database_v1.queries.survey_user_preference as sup_queries
+from libs.database_v1 import init_db
 import json
 
 import sys

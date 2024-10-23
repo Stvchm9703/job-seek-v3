@@ -1,0 +1,158 @@
+[
+  {
+    "id": "UserProfile:38c52k8vm40gleqxshc7",
+    "userId": "UserAccount:douqeac6rzhqt4xr9uqv",
+    "title": "Software Engineer",
+    "position": "software engineer",
+    "description": "Migrated legacy systems to the cloud. Developed backend services in Python and Java.",
+    "salary": "125000 - 140000",
+    "type": "EMPLOYEE",
+    "keywords": [
+      {
+        "kwId": "PreferenceKeyword:832y9z96ec0l4m1713cp",
+        "keyword": "UserProfile",
+        "value": "Java",
+        "userId": "",
+        "type": "",
+        "isPositive": false
+      },
+      {
+        "kwId": "PreferenceKeyword:ae5xbtr4okym64jfm3o3",
+        "keyword": "UserProfile",
+        "value": "Backend development",
+        "userId": "",
+        "type": "",
+        "isPositive": false
+      },
+      {
+        "kwId": "PreferenceKeyword:jk24y4sloi3t8os9pe30",
+        "keyword": "UserProfile",
+        "value": "Python",
+        "userId": "",
+        "type": "",
+        "isPositive": false
+      },
+      {
+        "kwId": "PreferenceKeyword:o9n09ydnxucy6sw7zagm",
+        "keyword": "industry",
+        "value": "Software Development",
+        "userId": "",
+        "type": "",
+        "isPositive": false
+      }
+    ],
+    "startDate": "2013-01-01",
+    "endDate": "2017-01-01",
+    "location": "",
+    "company": ""
+  },
+  {
+    "id": "UserProfile:51a4br1oudwu7teueyps",
+    "userId": "UserAccount:douqeac6rzhqt4xr9uqv",
+    "title": "Junior Software Engineer",
+    "position": "software engineer",
+    "description": "Assisted in backend software development. Debugged and troubleshot systems with senior engineers.",
+    "salary": "120000 - 135000",
+    "type": "EMPLOYEE",
+    "keywords": [
+      {
+        "kwId": "PreferenceKeyword:airmd5p1wblzsypa0055",
+        "keyword": "UserProfile",
+        "value": "Backend development",
+        "userId": "",
+        "type": "",
+        "isPositive": false
+      },
+      {
+        "kwId": "PreferenceKeyword:iqpmww1a4ygn7nj5x3wd",
+        "keyword": "industry",
+        "value": "Software Development",
+        "userId": "",
+        "type": "",
+        "isPositive": false
+      },
+      {
+        "kwId": "PreferenceKeyword:j19q8qgn6v21ixur85da",
+        "keyword": "UserProfile",
+        "value": "Python",
+        "userId": "",
+        "type": "",
+        "isPositive": false
+      }
+    ],
+    "startDate": "2010-01-01",
+    "endDate": "2013-01-01",
+    "location": "",
+    "company": ""
+  },
+  {
+    "id": "UserProfile:dbm8jxbqn8b9spwqbl1m",
+    "userId": "UserAccount:douqeac6rzhqt4xr9uqv",
+    "title": "Senior Software Engineer",
+    "position": "software engineer",
+    "description": "Led cloud-native application development on AWS. Implemented DevOps practices, increasing efficiency by 40%. Mentored junior developers.",
+    "salary": "135000 - 150000",
+    "type": "EMPLOYEE",
+    "keywords": [
+      {
+        "kwId": "PreferenceKeyword:ahh4ecxtiwbuwbomfhvd",
+        "keyword": "UserProfile",
+        "value": "AWS",
+        "userId": "",
+        "type": "",
+        "isPositive": false
+      },
+      {
+        "kwId": "PreferenceKeyword:h8xudzs02cbhbsghkj8d",
+        "keyword": "industry",
+        "value": "Software Development",
+        "userId": "",
+        "type": "",
+        "isPositive": false
+      },
+      {
+        "kwId": "PreferenceKeyword:kee5saal6gvuasqedg0l",
+        "keyword": "UserProfile",
+        "value": "DevOps",
+        "userId": "",
+        "type": "",
+        "isPositive": false
+      }
+    ],
+    "startDate": "2017-01-01",
+    "endDate": "2024-10-01",
+    "location": "",
+    "company": ""
+  },
+  {
+    "id": "UserProfile:o6por0rfwcyrddr2arga",
+    "userId": "UserAccount:douqeac6rzhqt4xr9uqv",
+    "title": "Technical Architect",
+    "position": "software engineer",
+    "description": "Led cloud-native application development on AWS. Implemented DevOps practices, increasing efficiency by 40%. Mentored junior developers.",
+    "salary": "130000 - 150000",
+    "type": "EMPLOYEE",
+    "keywords": [
+      {
+        "kwId": "PreferenceKeyword:43apdiqm8pt0j0lwfkf0",
+        "keyword": "UserProfile",
+        "value": "system administration",
+        "userId": "",
+        "type": "",
+        "isPositive": false
+      },
+      {
+        "kwId": "PreferenceKeyword:h2me67lggtxv1qmofbbn",
+        "keyword": "industry",
+        "value": "Software Development",
+        "userId": "",
+        "type": "",
+        "isPositive": false
+      }
+    ],
+    "startDate": "2017-01-01",
+    "endDate": "2024-10-01",
+    "location": "",
+    "company": ""
+  }
+]

@@ -35,9 +35,12 @@ async def get_user_account(connection, user_id: str) -> um_pb.UserAccount:
 
     if user_id == "":
         raise ValueError("userId is required to get user account")
-    result = UserAccountModel.get_by_id(user_id)
-    
-    return result
+    try:
+        result = UserAccountModel.get_by_id(user_id)
+        return result
+    except Exception as e:
+        print("Exception", e)
+        raise ValueError("User not found")
 
 
 async def search_user_account(

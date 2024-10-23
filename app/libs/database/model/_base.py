@@ -2,9 +2,15 @@ from peewee import *
 
 from google.protobuf.json_format import MessageToDict, ParseDict
 
+import snakecase
 
 from libs.database import db_conn
 import datetime
+
+
+def change_case(str):
+    # return "".join(["_" + i.lower() if i.isupper() else i for i in str]).lstrip("_")
+    return snakecase.convert(str)
 
 
 class BaseModel(Model):
@@ -21,9 +27,8 @@ class BaseModel(Model):
 
     @classmethod
     def from_proto(self, msg):
-        dict_msg = MessageToDict(msg)
-        self.__dict__.update(dict_msg)
-        pass
+
+        return self
 
     @classmethod
     def to_proto(self):
@@ -34,17 +39,36 @@ class BaseModel(Model):
 
     @classmethod
     def create_from_proto(self, msg):
-        return self.create(**self.from_proto(msg))
+        dict_msg = MessageToDict(msg)
+        dict_set = {}
+        # self.__dict__.update(dict_msg)
+        print(dict_msg)
+        for key, value in dict_msg.items():
+            if key != "id":
+                dict_set[change_case(key)] = value
+                # setattr(dict_set, change_case(key), value)
+                # setattr(dict_set, "ID", value)
+        print(dict_set)
+        query =  self.insert(**dict_set)
+        query.execute()
+        # return self.create(**self.from_proto(msg))
         pass
 
     @classmethod
     def update_from_proto(self, msg):
-        self.from_proto(msg)
+
+        dict_msg = MessageToDict(msg)
+        dict_set = {}
+        # self.__dict__.update(dict_msg)
+        for key, value in dict_msg.items():
+            setattr(dict_set, change_case(key), value)
+            if key == "id":
+                dict_set.ID = value
+
         if self.ID is None:
             return
-
-        self.save()
-
+        query = self.update(**dict_set).where(self.ID == dict_set.ID)
+        query.execute()
         pass
 
     @classmethod

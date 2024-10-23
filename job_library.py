@@ -183,7 +183,6 @@ WORK_TYPE_MAPPING = {
 POWERS = {'K': 10 ** 3, 'M': 10 ** 6, 'k': 10 ** 3, 'm': 10 ** 6, 'g': 10 ** 9, 'G': 10 ** 9}
 
 
-
 # -----------------------
 # Utility Functions
 # -----------------------
@@ -196,14 +195,14 @@ def load_data(path: str) -> pd.DataFrame:
     df = df.drop(
         columns=[
             "HittedKeywords",
-            "CompanyDetail",
-            "CompanyDetail.LastUpdate",
-            "CompanyDetail.Linkedin",
-            "CompanyDetail.Locations",
-            "CompanyDetail.ReferenceId",
-            "CompanyDetail.id",
-            "CompanyDetail.Url",
-            # "PostId",
+            "companyDetail",
+            "companyDetail.LastUpdate",
+            "companyDetail.Linkedin",
+            "companyDetail.locations",
+            "companyDetail.ReferenceId",
+            "companyDetail.id",
+            "companyDetail.Url",
+            # "postId",
             "PostUrl",
             "ExpiringDate",
             "id",
@@ -216,15 +215,17 @@ def load_other_data(file_path):
     with open(file_path, 'r') as file:
         data = json.load(file)
     return data
-    
+
 
 # Function to convert salary strings with K, M, etc.
 def number_conversion(s, powers):
-    if s[-1] in powers.keys():
-        return float(s[:-1]) * powers[s[-1]]
+    if any(char.isdigit() for char in s):
+        if s[-1] in powers.keys():
+            return float(s[:-1]) * powers[s[-1]]
+        else:
+            return float(s)
     else:
-        return float(s)
-
+        return float(0)
 
 # Function to determine the time period in salary
 def get_time_period(salary):
@@ -238,18 +239,18 @@ def get_time_period(salary):
         return 'yearly'
 
 
-# Main feature conversion function with WorkType weighting
-def feature_conversion(df: pd.DataFrame, powers: dict) -> pd.DataFrame:
-    
+# Main feature conversion function with workType weighting
+def feature_conversion(df: pd.DataFrame) -> pd.DataFrame:
+    powers = POWERS
     # Salary conversion function
     def convert_salary(salary, powers):
         time_period = get_time_period(salary)
-        
+
         # Extract numerical values and modifiers (K, M, etc.)
         wage = re.findall(r"[\d|,|.]+[k|K|m|M|g|G]?", salary)
         wage = [i.replace(',', '') for i in wage]        
         wage = [number_conversion(i, powers) for i in wage if i.strip() != ""]
-    
+
         # Adjust salary based on time period
         if time_period == 'hourly':
             wage = [i * 38 * 52 for i in wage if i is not None]  # Example: 38 hours/week, 52 weeks/year
@@ -258,9 +259,9 @@ def feature_conversion(df: pd.DataFrame, powers: dict) -> pd.DataFrame:
         elif time_period == 'weekly':
             wage = [i * 52 for i in wage if i is not None]      # 52 weeks/year
         # No adjustment needed for 'yearly'
-    
+
         return wage if wage else [np.nan, np.nan]  # Return list of None if no wage found
-    
+
     # Function to extract PayRangeMin and PayRangeMax
     def extract_pay_range(pay_range):
         if len(pay_range) == 2:
@@ -269,54 +270,59 @@ def feature_conversion(df: pd.DataFrame, powers: dict) -> pd.DataFrame:
             return pd.Series([pay_range[0], pay_range[0]])
         else: 
             return pd.Series([np.nan, np.nan])  # Handle cases where no salary information is found
-        
-    # Define WorkType weights
+
+    # Define workType weights
     worktype_weights = {
         'Full Time': 1.0,
         'Contract/temp': 0.7,
         'Part Time': 0.5,
         'Casual/vacation': 0.3
     }
-    
-    # Standardize WorkType entries to match the keys in worktype_weights
-    df['WorkType'] = df['WorkType'].str.strip().str.title()
-    
+
     # Apply salary conversion and extract min/max ranges
     df_new_save = pd.DataFrame()
-    df_new_save[['PostId']] = df[['PostId']]
-    
+    df_new_save[['postId']] = df[['postId']]
+
     # Convert salary and extract pay range
     df_new_save[['PayRangeMin', 'PayRangeMax']] = df.apply(
-        lambda row: extract_pay_range(convert_salary(row['PayRange'], powers)), axis=1
+        lambda row: extract_pay_range(convert_salary(row['payRange'], powers)), axis=1
     )
     
-    # Convert 'WorkType' to categorical
-    df["WorkType"] = df["WorkType"].astype("category")
-    
-    # Map WorkType to weights
-    df_new_save['WorkType'] = df['WorkType'].map(worktype_weights)
-    
-    # Handle WorkTypes not in the mapping by assigning a default weight of 1.0
-    df_new_save['WorkType'] = df_new_save['WorkType'].fillna(1.0)
-    
+    # Standardize workType entries to match the keys in worktype_weights
+    df["workType"] = df["workType"].str.strip().str.title()
+    # Convert 'workType' to categorical
+    df["workType"] = df["workType"].astype("category")
+
+    # Map workType to weights
+    df_new_save['workType'] = df['workType'].map(worktype_weights)
+
+    # Handle workTypes not in the mapping by assigning a default weight of 1.0
+    df_new_save['workType'] = df_new_save['workType'].fillna(1.0)
+
     # Apply the weight to PayRangeMin and PayRangeMax
-    df_new_save['PayRangeMin'] = df_new_save['PayRangeMin'] * df_new_save['WorkType']
-    df_new_save['PayRangeMax'] = df_new_save['PayRangeMax'] * df_new_save['WorkType']
-    
-    # Drop the 'WorkType' column if it's no longer needed
-    df_new_save = df_new_save.drop(columns=['WorkType'])
-    
+    df_new_save['PayRangeMin'] = df_new_save['PayRangeMin'] * df_new_save['workType']
+    df_new_save['PayRangeMax'] = df_new_save['PayRangeMax'] * df_new_save['workType']
+
+    # Drop the 'workType' column if it's no longer needed
+    df_new_save = df_new_save.drop(columns=['workType'])
+
     # Convert other columns to categorical as needed
-    df["CompanyDetail.GroupSize"] = df["CompanyDetail.GroupSize"].astype("category")      
-    df["CompanyDetail.Industry"] = df["CompanyDetail.Industry"].astype("category")
-    
+    df_new_save["companyDetail.groupSize"] = df["companyDetail.groupSize"].astype(
+        "category"
+    )
+    df_new_save["companyDetail.industry"] = df["companyDetail.industry"].astype(
+        "category"
+    )
+
     # Optional: Handle missing PayRangeMin and PayRangeMax by filling with 0 or another strategy
-    #df_new_save[['PayRangeMin', 'PayRangeMax']] = df_new_save[['PayRangeMin', 'PayRangeMax']].fillna(0)
-    
+    # df_new_save[['PayRangeMin', 'PayRangeMax']] = df_new_save[['PayRangeMin', 'PayRangeMax']].fillna(0)
+
     # Ensure PayRangeMin is less than or equal to PayRangeMax
     df_new_save['PayRangeMin'] = df_new_save[['PayRangeMin', 'PayRangeMax']].min(axis=1)
     df_new_save['PayRangeMax'] = df_new_save[['PayRangeMin', 'PayRangeMax']].max(axis=1)
-    
+
+    print('feature_conversion', df_new_save.columns)
+
     return df_new_save
 
 
@@ -488,7 +494,7 @@ def preprocess_zeros_nan(new_jobs_df, user_location):
     new_jobs_df['distance_km'].fillna(new_jobs_df['distance_km'].mean(), inplace=True)
     
     # Apply condition
-    mask = new_jobs_df['Locations'] != user_location
+    mask = new_jobs_df['locations'] != user_location
     
     # Fill zeros with the mean
     mean_distance_km = new_jobs_df['distance_km'].mean()
@@ -594,12 +600,12 @@ def convert_value(value):
         return bool(value)
     else:
         return value
-    
-    
+
+
 # Update the function to handle numerical and categorical data differently
 def create_feature_diff(row, job_features):
-    job_A = job_features.loc[row['job_A_id']]
-    job_B = job_features.loc[row['job_B_id']]
+    job_A = job_features.loc[row['job_a_id']]
+    job_B = job_features.loc[row['job_b_id']]
     
     # Separate numerical and categorical columns
     numerical_columns = job_features.select_dtypes(include=[np.number]).columns

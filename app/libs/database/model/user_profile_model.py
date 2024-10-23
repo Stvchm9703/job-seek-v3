@@ -30,7 +30,12 @@ class UserProfileModel(BaseModel):
         schema = "public"
         database = db_conn
 
-    user = ForeignKeyField(UserAccountModel, backref="user_profiles")
+    user = ForeignKeyField(
+        UserAccountModel,
+        related_name="profiles",
+        constraint_name="fk_user_profile_user",
+        null=True,
+    )
     title = TextField()
     position = TextField()
     description = TextField()
@@ -41,7 +46,7 @@ class UserProfileModel(BaseModel):
     end_date = TextField()
     keywords = ForeignKeyField(
         PreferenceKeywordModel,
-        backref="user_profile",
+        related_name="profile",
         constraint_name="fk_user_profile_keywords",
         null=True,
     )

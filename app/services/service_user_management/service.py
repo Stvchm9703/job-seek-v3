@@ -59,12 +59,9 @@ class UserManagementService(object):
     async def GetUserAccount(self, context, request: GetUserRequest) -> UserAccount:
         await self.check_db()
         try:
-            pt_msg = MessageToDict(request)
-            # print("GetUserAccount", pt_msg)
-            result = await ua_queries.get_user_account(self.__db_conn__, request.user_id)
-            # print("request", request)
 
-            # result = await ua_queries.search_user_account(self.__db_conn__, pt_msg)
+            result = await ua_queries.get_user_account(self.__db_conn__, request.userId)
+            
             if result is None:
                 raise NotFoundError(request)
 

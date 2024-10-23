@@ -1,0 +1,742 @@
+[
+  {
+    "pair_id": 1,
+    "job_A": {
+      "job_id": "79126281",
+      "user_preference_score": 0.5916669004033516,
+      "features": {
+        "adjusted_job_title_similarity": 0.8444532155990601,
+        "adjusted_job_industry_similarity": 0.4755076467990875,
+        "adjusted_company_size": 0.75,
+        "adjusted_job_sector": 1,
+        "adjusted_company_culture": 0.49988144636154175,
+        "adjusted_work_model": 0,
+        "adjusted_salary_expectation": 0.40738731622695923,
+        "adjusted_role_type": 0.6432748538011694,
+        "adjusted_distance_score": 0.9419523538433388,
+        "descriptions_similarity_to_resume_norm": 0.5968037247657776,
+        "pay_average_norm": 0.07126436781609195
+      }
+    },
+    "job_B": {
+      "job_id": "79395765",
+      "user_preference_score": 0.6065710895073892,
+      "features": {
+        "adjusted_job_title_similarity": 0.773090124130249,
+        "adjusted_job_industry_similarity": 0.30599722266197205,
+        "adjusted_company_size": 0.75,
+        "adjusted_job_sector": 1,
+        "adjusted_company_culture": 0.35569605231285095,
+        "adjusted_work_model": 1,
+        "adjusted_salary_expectation": 0.348588764667511,
+        "adjusted_role_type": 0.6666666666666667,
+        "adjusted_distance_score": 0.5264213239339337,
+        "descriptions_similarity_to_resume_norm": 0.5564390420913696,
+        "pay_average_norm": 0.1391665621734587
+      }
+    },
+    "similarities": [
+      "adjusted_job_title_similarity",
+      "adjusted_company_size",
+      "adjusted_job_sector",
+      "adjusted_salary_expectation",
+      "descriptions_similarity_to_resume_norm",
+      "pay_average_norm"
+    ],
+    "differences": [
+      "adjusted_work_model",
+      "adjusted_role_type"
+    ],
+    "overall_similarity": 0.730213140221617
+  },
+  {
+    "pair_id": 2,
+    "job_A": {
+      "job_id": "79359153",
+      "user_preference_score": 0.5885087531370403,
+      "features": {
+        "adjusted_job_title_similarity": 0.5535596013069153,
+        "adjusted_job_industry_similarity": 0.4329386353492737,
+        "adjusted_company_size": 0.75,
+        "adjusted_job_sector": 1,
+        "adjusted_company_culture": 0.43275919556617737,
+        "adjusted_work_model": 1,
+        "adjusted_salary_expectation": 0.18052378296852112,
+        "adjusted_role_type": 0.6666666666666667,
+        "adjusted_distance_score": 0.5264213239339337,
+        "descriptions_similarity_to_resume_norm": 0.5904877781867981,
+        "pay_average_norm": 0.07126436781609195
+      }
+    },
+    "job_B": {
+      "job_id": "79126281",
+      "user_preference_score": 0.5916669004033516,
+      "features": {
+        "adjusted_job_title_similarity": 0.8444532155990601,
+        "adjusted_job_industry_similarity": 0.4755076467990875,
+        "adjusted_company_size": 0.75,
+        "adjusted_job_sector": 1,
+        "adjusted_company_culture": 0.49988144636154175,
+        "adjusted_work_model": 0,
+        "adjusted_salary_expectation": 0.40738731622695923,
+        "adjusted_role_type": 0.6432748538011694,
+        "adjusted_distance_score": 0.9419523538433388,
+        "descriptions_similarity_to_resume_norm": 0.5968037247657776,
+        "pay_average_norm": 0.07126436781609195
+      }
+    },
+    "similarities": [
+      "adjusted_job_industry_similarity",
+      "adjusted_company_size",
+      "adjusted_job_sector",
+      "adjusted_company_culture",
+      "descriptions_similarity_to_resume_norm",
+      "pay_average_norm"
+    ],
+    "differences": [
+      "adjusted_work_model",
+      "adjusted_role_type"
+    ],
+    "overall_similarity": 0.722791325810321
+  },
+  {
+    "pair_id": 3,
+    "job_A": {
+      "job_id": "79669722",
+      "user_preference_score": 0.4622623246300283,
+      "features": {
+        "adjusted_job_title_similarity": 0.35823121666908264,
+        "adjusted_job_industry_similarity": 0.43293875455856323,
+        "adjusted_company_size": 0.75,
+        "adjusted_job_sector": 1,
+        "adjusted_company_culture": 0.28301700949668884,
+        "adjusted_work_model": 0,
+        "adjusted_salary_expectation": 0.5099818706512451,
+        "adjusted_role_type": 0.6666666666666667,
+        "adjusted_distance_score": 0.5264213239339337,
+        "descriptions_similarity_to_resume_norm": 0.4593214988708496,
+        "pay_average_norm": 0.07126436781609195
+      }
+    },
+    "job_B": {
+      "job_id": "79531626",
+      "user_preference_score": 0.45335113768314206,
+      "features": {
+        "adjusted_job_title_similarity": 0.37795862555503845,
+        "adjusted_job_industry_similarity": 0.4013499617576599,
+        "adjusted_company_size": 0.75,
+        "adjusted_job_sector": 1,
+        "adjusted_company_culture": 0.41365647315979004,
+        "adjusted_work_model": 1,
+        "adjusted_salary_expectation": 0.33259907364845276,
+        "adjusted_role_type": 0.0,
+        "adjusted_distance_score": 0.0,
+        "descriptions_similarity_to_resume_norm": 0.5937678217887878,
+        "pay_average_norm": 0.07126436781609195
+      }
+    },
+    "similarities": [
+      "adjusted_job_title_similarity",
+      "adjusted_job_industry_similarity",
+      "adjusted_company_size",
+      "adjusted_job_sector",
+      "pay_average_norm"
+    ],
+    "differences": [
+      "adjusted_work_model",
+      "adjusted_role_type"
+    ],
+    "overall_similarity": 0.7254358028355209
+  },
+  {
+    "pair_id": 4,
+    "job_A": {
+      "job_id": "79531626",
+      "user_preference_score": 0.45335113768314206,
+      "features": {
+        "adjusted_job_title_similarity": 0.37795862555503845,
+        "adjusted_job_industry_similarity": 0.4013499617576599,
+        "adjusted_company_size": 0.75,
+        "adjusted_job_sector": 1,
+        "adjusted_company_culture": 0.41365647315979004,
+        "adjusted_work_model": 1,
+        "adjusted_salary_expectation": 0.33259907364845276,
+        "adjusted_role_type": 0.0,
+        "adjusted_distance_score": 0.0,
+        "descriptions_similarity_to_resume_norm": 0.5937678217887878,
+        "pay_average_norm": 0.07126436781609195
+      }
+    },
+    "job_B": {
+      "job_id": "79059311",
+      "user_preference_score": 0.4817078319352594,
+      "features": {
+        "adjusted_job_title_similarity": 0.4892299175262451,
+        "adjusted_job_industry_similarity": 0.28235936164855957,
+        "adjusted_company_size": 0.75,
+        "adjusted_job_sector": 1,
+        "adjusted_company_culture": 0.5335568189620972,
+        "adjusted_work_model": 0,
+        "adjusted_salary_expectation": 0.3900175392627716,
+        "adjusted_role_type": 0.6432748538011694,
+        "adjusted_distance_score": 0.5264213239339337,
+        "descriptions_similarity_to_resume_norm": 0.5683823823928833,
+        "pay_average_norm": 0.07126436781609195
+      }
+    },
+    "similarities": [
+      "adjusted_company_size",
+      "adjusted_job_sector",
+      "adjusted_salary_expectation",
+      "descriptions_similarity_to_resume_norm",
+      "pay_average_norm"
+    ],
+    "differences": [
+      "adjusted_work_model",
+      "adjusted_role_type"
+    ],
+    "overall_similarity": 0.7309647838709268
+  },
+  {
+    "pair_id": 5,
+    "job_A": {
+      "job_id": "79248223",
+      "user_preference_score": 0.47231571385380894,
+      "features": {
+        "adjusted_job_title_similarity": 0.66462641954422,
+        "adjusted_job_industry_similarity": 0.2776784300804138,
+        "adjusted_company_size": 0.75,
+        "adjusted_job_sector": 1,
+        "adjusted_company_culture": 0.21584464609622955,
+        "adjusted_work_model": 0,
+        "adjusted_salary_expectation": 0.17201051115989685,
+        "adjusted_role_type": 0.6432748538011694,
+        "adjusted_distance_score": 0.5264213239339337,
+        "descriptions_similarity_to_resume_norm": 0.6591905355453491,
+        "pay_average_norm": 0.07126436781609195
+      }
+    },
+    "job_B": {
+      "job_id": "79558268",
+      "user_preference_score": 0.47678366060661503,
+      "features": {
+        "adjusted_job_title_similarity": 0.4020221531391144,
+        "adjusted_job_industry_similarity": 0.4329386353492737,
+        "adjusted_company_size": 0.75,
+        "adjusted_job_sector": 1,
+        "adjusted_company_culture": 0.19530268013477325,
+        "adjusted_work_model": 1,
+        "adjusted_salary_expectation": 0.2129966914653778,
+        "adjusted_role_type": 0.6666666666666667,
+        "adjusted_distance_score": 0.13073092424096813,
+        "descriptions_similarity_to_resume_norm": 0.2966228723526001,
+        "pay_average_norm": 0.0006802507836990595
+      }
+    },
+    "similarities": [
+      "adjusted_company_size",
+      "adjusted_job_sector",
+      "adjusted_company_culture",
+      "adjusted_salary_expectation",
+      "pay_average_norm"
+    ],
+    "differences": [
+      "adjusted_work_model",
+      "adjusted_role_type"
+    ],
+    "overall_similarity": 0.6992513847221192
+  },
+  {
+    "pair_id": 6,
+    "job_A": {
+      "job_id": "79399096",
+      "user_preference_score": 0.4905856140863624,
+      "features": {
+        "adjusted_job_title_similarity": 0.5346103310585022,
+        "adjusted_job_industry_similarity": 0.4755076467990875,
+        "adjusted_company_size": 0.75,
+        "adjusted_job_sector": 1,
+        "adjusted_company_culture": 0.3652929365634918,
+        "adjusted_work_model": 0,
+        "adjusted_salary_expectation": 0.38671010732650757,
+        "adjusted_role_type": 0.6432748538011694,
+        "adjusted_distance_score": 0.5264213239339337,
+        "descriptions_similarity_to_resume_norm": 0.5481056571006775,
+        "pay_average_norm": 0.07126436781609195
+      }
+    },
+    "job_B": {
+      "job_id": "79558268",
+      "user_preference_score": 0.47678366060661503,
+      "features": {
+        "adjusted_job_title_similarity": 0.4020221531391144,
+        "adjusted_job_industry_similarity": 0.4329386353492737,
+        "adjusted_company_size": 0.75,
+        "adjusted_job_sector": 1,
+        "adjusted_company_culture": 0.19530268013477325,
+        "adjusted_work_model": 1,
+        "adjusted_salary_expectation": 0.2129966914653778,
+        "adjusted_role_type": 0.6666666666666667,
+        "adjusted_distance_score": 0.13073092424096813,
+        "descriptions_similarity_to_resume_norm": 0.2966228723526001,
+        "pay_average_norm": 0.0006802507836990595
+      }
+    },
+    "similarities": [
+      "adjusted_job_industry_similarity",
+      "adjusted_company_size",
+      "adjusted_job_sector",
+      "pay_average_norm"
+    ],
+    "differences": [
+      "adjusted_work_model",
+      "adjusted_role_type"
+    ],
+    "overall_similarity": 0.705761983815123
+  },
+  {
+    "pair_id": 7,
+    "job_A": {
+      "job_id": "79258859",
+      "user_preference_score": 0.4596870416912499,
+      "features": {
+        "adjusted_job_title_similarity": 0.3066175580024719,
+        "adjusted_job_industry_similarity": 0.4755076467990875,
+        "adjusted_company_size": 0.75,
+        "adjusted_job_sector": 1,
+        "adjusted_company_culture": 0.428974449634552,
+        "adjusted_work_model": 0,
+        "adjusted_salary_expectation": 0.1730949580669403,
+        "adjusted_role_type": 0.6666666666666667,
+        "adjusted_distance_score": 0.5264213239339337,
+        "descriptions_similarity_to_resume_norm": 0.6029790639877319,
+        "pay_average_norm": 0.00061337513061651
+      }
+    },
+    "job_B": {
+      "job_id": "79692374",
+      "user_preference_score": 0.48704401785251766,
+      "features": {
+        "adjusted_job_title_similarity": 0.3219888508319855,
+        "adjusted_job_industry_similarity": 0.4755076467990875,
+        "adjusted_company_size": 0.75,
+        "adjusted_job_sector": 1,
+        "adjusted_company_culture": 0.6182613372802734,
+        "adjusted_work_model": 0,
+        "adjusted_salary_expectation": 0.3633318543434143,
+        "adjusted_role_type": 0.6432748538011694,
+        "adjusted_distance_score": 0.5264213239339337,
+        "descriptions_similarity_to_resume_norm": 0.5948533415794373,
+        "pay_average_norm": 1.0
+      }
+    },
+    "similarities": [
+      "adjusted_job_title_similarity",
+      "adjusted_job_industry_similarity",
+      "adjusted_company_size",
+      "adjusted_job_sector",
+      "adjusted_work_model",
+      "adjusted_distance_score",
+      "descriptions_similarity_to_resume_norm"
+    ],
+    "differences": [
+      "adjusted_role_type",
+      "pay_average_norm"
+    ],
+    "overall_similarity": 0.7815993196696334
+  },
+  {
+    "pair_id": 8,
+    "job_A": {
+      "job_id": "79204836",
+      "user_preference_score": 0.4452527636799279,
+      "features": {
+        "adjusted_job_title_similarity": 0.34771227836608887,
+        "adjusted_job_industry_similarity": 0.4755076467990875,
+        "adjusted_company_size": 0.75,
+        "adjusted_job_sector": 1,
+        "adjusted_company_culture": 0.15066444873809814,
+        "adjusted_work_model": 0,
+        "adjusted_salary_expectation": 0.24769368767738342,
+        "adjusted_role_type": 0.6666666666666667,
+        "adjusted_distance_score": 0.5264213239339337,
+        "descriptions_similarity_to_resume_norm": 0.5525164604187012,
+        "pay_average_norm": 0.07126436781609195
+      }
+    },
+    "job_B": {
+      "job_id": "79692374",
+      "user_preference_score": 0.48704401785251766,
+      "features": {
+        "adjusted_job_title_similarity": 0.3219888508319855,
+        "adjusted_job_industry_similarity": 0.4755076467990875,
+        "adjusted_company_size": 0.75,
+        "adjusted_job_sector": 1,
+        "adjusted_company_culture": 0.6182613372802734,
+        "adjusted_work_model": 0,
+        "adjusted_salary_expectation": 0.3633318543434143,
+        "adjusted_role_type": 0.6432748538011694,
+        "adjusted_distance_score": 0.5264213239339337,
+        "descriptions_similarity_to_resume_norm": 0.5948533415794373,
+        "pay_average_norm": 1.0
+      }
+    },
+    "similarities": [
+      "adjusted_job_title_similarity",
+      "adjusted_job_industry_similarity",
+      "adjusted_company_size",
+      "adjusted_job_sector",
+      "adjusted_work_model",
+      "adjusted_distance_score",
+      "descriptions_similarity_to_resume_norm"
+    ],
+    "differences": [
+      "adjusted_role_type",
+      "pay_average_norm"
+    ],
+    "overall_similarity": 0.7654517276284587
+  },
+  {
+    "pair_id": 9,
+    "job_A": {
+      "job_id": "79131330",
+      "user_preference_score": 0.555654576138827,
+      "features": {
+        "adjusted_job_title_similarity": 0.889785647392273,
+        "adjusted_job_industry_similarity": 0.4755076467990875,
+        "adjusted_company_size": 0.75,
+        "adjusted_job_sector": 1,
+        "adjusted_company_culture": 0.5320113301277161,
+        "adjusted_work_model": 0,
+        "adjusted_salary_expectation": 0.3430483639240265,
+        "adjusted_role_type": 0.6432748538011694,
+        "adjusted_distance_score": 0.5264213239339337,
+        "descriptions_similarity_to_resume_norm": 0.6830557584762573,
+        "pay_average_norm": 0.07126436781609195
+      }
+    },
+    "job_B": {
+      "job_id": "79697760",
+      "user_preference_score": 0.5748987007265272,
+      "features": {
+        "adjusted_job_title_similarity": 0.5154834389686584,
+        "adjusted_job_industry_similarity": 0.43293875455856323,
+        "adjusted_company_size": 0.75,
+        "adjusted_job_sector": 1,
+        "adjusted_company_culture": 0.26732373237609863,
+        "adjusted_work_model": 1,
+        "adjusted_salary_expectation": 0.08254432678222656,
+        "adjusted_role_type": 0.6666666666666667,
+        "adjusted_distance_score": 0.5264213239339337,
+        "descriptions_similarity_to_resume_norm": 0.6793643832206726,
+        "pay_average_norm": 0.07126436781609195
+      }
+    },
+    "similarities": [
+      "adjusted_job_industry_similarity",
+      "adjusted_company_size",
+      "adjusted_job_sector",
+      "adjusted_distance_score",
+      "descriptions_similarity_to_resume_norm",
+      "pay_average_norm"
+    ],
+    "differences": [
+      "adjusted_work_model",
+      "adjusted_role_type"
+    ],
+    "overall_similarity": 0.732204177162864
+  },
+  {
+    "pair_id": 10,
+    "job_A": {
+      "job_id": "79194324",
+      "user_preference_score": 0.5811882950675966,
+      "features": {
+        "adjusted_job_title_similarity": 1.0,
+        "adjusted_job_industry_similarity": 0.3059973120689392,
+        "adjusted_company_size": 0.75,
+        "adjusted_job_sector": 1,
+        "adjusted_company_culture": 0.3842274248600006,
+        "adjusted_work_model": 1,
+        "adjusted_salary_expectation": 0.34290003776550293,
+        "adjusted_role_type": 0.6666666666666667,
+        "adjusted_distance_score": 0.5264213239339337,
+        "descriptions_similarity_to_resume_norm": 0.09810025990009308,
+        "pay_average_norm": 0.07126436781609195
+      }
+    },
+    "job_B": {
+      "job_id": "79561073",
+      "user_preference_score": 0.5710141949326036,
+      "features": {
+        "adjusted_job_title_similarity": 0.64519864320755,
+        "adjusted_job_industry_similarity": 0.4755076467990875,
+        "adjusted_company_size": 0.75,
+        "adjusted_job_sector": 1,
+        "adjusted_company_culture": 0.48360392451286316,
+        "adjusted_work_model": 0,
+        "adjusted_salary_expectation": 0.3701334595680237,
+        "adjusted_role_type": 0.6432748538011694,
+        "adjusted_distance_score": 0.9079423435122312,
+        "descriptions_similarity_to_resume_norm": 0.6882994174957275,
+        "pay_average_norm": 0.07126436781609195
+      }
+    },
+    "similarities": [
+      "adjusted_company_size",
+      "adjusted_job_sector",
+      "adjusted_company_culture",
+      "adjusted_salary_expectation",
+      "pay_average_norm"
+    ],
+    "differences": [
+      "adjusted_work_model",
+      "adjusted_role_type"
+    ],
+    "overall_similarity": 0.6706689186854508
+  },
+  {
+    "pair_id": 11,
+    "job_A": {
+      "job_id": "79697760",
+      "user_preference_score": 0.5748987007265272,
+      "features": {
+        "adjusted_job_title_similarity": 0.5154834389686584,
+        "adjusted_job_industry_similarity": 0.43293875455856323,
+        "adjusted_company_size": 0.75,
+        "adjusted_job_sector": 1,
+        "adjusted_company_culture": 0.26732373237609863,
+        "adjusted_work_model": 1,
+        "adjusted_salary_expectation": 0.08254432678222656,
+        "adjusted_role_type": 0.6666666666666667,
+        "adjusted_distance_score": 0.5264213239339337,
+        "descriptions_similarity_to_resume_norm": 0.6793643832206726,
+        "pay_average_norm": 0.07126436781609195
+      }
+    },
+    "job_B": {
+      "job_id": "79445482",
+      "user_preference_score": 0.5432534042716263,
+      "features": {
+        "adjusted_job_title_similarity": 0.527417778968811,
+        "adjusted_job_industry_similarity": 0.4755076467990875,
+        "adjusted_company_size": 0.75,
+        "adjusted_job_sector": 1,
+        "adjusted_company_culture": 0.6158464550971985,
+        "adjusted_work_model": 0,
+        "adjusted_salary_expectation": 0.3011639416217804,
+        "adjusted_role_type": 0.6432748538011694,
+        "adjusted_distance_score": 0.9079423435122312,
+        "descriptions_similarity_to_resume_norm": 0.5362704396247864,
+        "pay_average_norm": 0.07126436781609195
+      }
+    },
+    "similarities": [
+      "adjusted_job_title_similarity",
+      "adjusted_job_industry_similarity",
+      "adjusted_company_size",
+      "adjusted_job_sector",
+      "pay_average_norm"
+    ],
+    "differences": [
+      "adjusted_work_model",
+      "adjusted_role_type"
+    ],
+    "overall_similarity": 0.7139763206026483
+  },
+  {
+    "pair_id": 12,
+    "job_A": {
+      "job_id": "79426704",
+      "user_preference_score": 0.5534575633841816,
+      "features": {
+        "adjusted_job_title_similarity": 0.8897859454154968,
+        "adjusted_job_industry_similarity": 0.4755076467990875,
+        "adjusted_company_size": 0.75,
+        "adjusted_job_sector": 1,
+        "adjusted_company_culture": 0.4111248552799225,
+        "adjusted_work_model": 0,
+        "adjusted_salary_expectation": 0.32224950194358826,
+        "adjusted_role_type": 0.6666666666666667,
+        "adjusted_distance_score": 0.5264213239339337,
+        "descriptions_similarity_to_resume_norm": 0.7325387001037598,
+        "pay_average_norm": 0.07126436781609195
+      }
+    },
+    "job_B": {
+      "job_id": "79246080",
+      "user_preference_score": 0.5824935843727582,
+      "features": {
+        "adjusted_job_title_similarity": 0.5003818273544312,
+        "adjusted_job_industry_similarity": 0.34513187408447266,
+        "adjusted_company_size": 0.75,
+        "adjusted_job_sector": 1,
+        "adjusted_company_culture": 0.1539623886346817,
+        "adjusted_work_model": 1,
+        "adjusted_salary_expectation": 0.2300996631383896,
+        "adjusted_role_type": 0.6432748538011694,
+        "adjusted_distance_score": 0.8001105306578871,
+        "descriptions_similarity_to_resume_norm": 0.5397798418998718,
+        "pay_average_norm": 0.07126436781609195
+      }
+    },
+    "similarities": [
+      "adjusted_company_size",
+      "adjusted_job_sector",
+      "adjusted_salary_expectation",
+      "pay_average_norm"
+    ],
+    "differences": [
+      "adjusted_work_model",
+      "adjusted_role_type"
+    ],
+    "overall_similarity": 0.6967690644585196
+  },
+  {
+    "pair_id": 13,
+    "job_A": {
+      "job_id": "79611190",
+      "user_preference_score": 0.5594417304706303,
+      "features": {
+        "adjusted_job_title_similarity": 0.8816408514976501,
+        "adjusted_job_industry_similarity": 0.4329386353492737,
+        "adjusted_company_size": 0.75,
+        "adjusted_job_sector": 1,
+        "adjusted_company_culture": 0.4981689751148224,
+        "adjusted_work_model": 0,
+        "adjusted_salary_expectation": 0.26019757986068726,
+        "adjusted_role_type": 0.6432748538011694,
+        "adjusted_distance_score": 0.5264213239339337,
+        "descriptions_similarity_to_resume_norm": 0.8361260294914246,
+        "pay_average_norm": 0.07126436781609195
+      }
+    },
+    "job_B": {
+      "job_id": "79223318",
+      "user_preference_score": 0.5398320909899952,
+      "features": {
+        "adjusted_job_title_similarity": 0.2804563343524933,
+        "adjusted_job_industry_similarity": 0.32581600546836853,
+        "adjusted_company_size": 0.75,
+        "adjusted_job_sector": 1,
+        "adjusted_company_culture": 0.2388034462928772,
+        "adjusted_work_model": 1,
+        "adjusted_salary_expectation": 0.2991240322589874,
+        "adjusted_role_type": 0.6666666666666667,
+        "adjusted_distance_score": 0.5264213239339337,
+        "descriptions_similarity_to_resume_norm": 0.5640231966972351,
+        "pay_average_norm": 0.07126436781609195
+      }
+    },
+    "similarities": [
+      "adjusted_company_size",
+      "adjusted_job_sector",
+      "adjusted_salary_expectation",
+      "adjusted_distance_score",
+      "pay_average_norm"
+    ],
+    "differences": [
+      "adjusted_work_model",
+      "adjusted_role_type"
+    ],
+    "overall_similarity": 0.7019361799413507
+  },
+  {
+    "pair_id": 14,
+    "job_A": {
+      "job_id": "79346498",
+      "user_preference_score": 0.5666515049758237,
+      "features": {
+        "adjusted_job_title_similarity": 0.7054339647293091,
+        "adjusted_job_industry_similarity": 0.31431978940963745,
+        "adjusted_company_size": 0.75,
+        "adjusted_job_sector": 1,
+        "adjusted_company_culture": 0.47858157753944397,
+        "adjusted_work_model": 0,
+        "adjusted_salary_expectation": 0.3609350025653839,
+        "adjusted_role_type": 0.6432748538011694,
+        "adjusted_distance_score": 0.905837298401351,
+        "descriptions_similarity_to_resume_norm": 0.7310524582862854,
+        "pay_average_norm": 0.07126436781609195
+      }
+    },
+    "job_B": {
+      "job_id": "79099520",
+      "user_preference_score": 0.5486005582225801,
+      "features": {
+        "adjusted_job_title_similarity": 0.3480062782764435,
+        "adjusted_job_industry_similarity": 0.32581600546836853,
+        "adjusted_company_size": 0.75,
+        "adjusted_job_sector": 1,
+        "adjusted_company_culture": 0.24789901077747345,
+        "adjusted_work_model": 1,
+        "adjusted_salary_expectation": 0.3347644507884979,
+        "adjusted_role_type": 0.6666666666666667,
+        "adjusted_distance_score": 0.5264213239339337,
+        "descriptions_similarity_to_resume_norm": 0.5414765477180481,
+        "pay_average_norm": 0.07126436781609195
+      }
+    },
+    "similarities": [
+      "adjusted_job_industry_similarity",
+      "adjusted_company_size",
+      "adjusted_job_sector",
+      "adjusted_salary_expectation",
+      "pay_average_norm"
+    ],
+    "differences": [
+      "adjusted_work_model",
+      "adjusted_role_type"
+    ],
+    "overall_similarity": 0.7095664644377322
+  },
+  {
+    "pair_id": 15,
+    "job_A": {
+      "job_id": "79426704",
+      "user_preference_score": 0.5534575633841816,
+      "features": {
+        "adjusted_job_title_similarity": 0.8897859454154968,
+        "adjusted_job_industry_similarity": 0.4755076467990875,
+        "adjusted_company_size": 0.75,
+        "adjusted_job_sector": 1,
+        "adjusted_company_culture": 0.4111248552799225,
+        "adjusted_work_model": 0,
+        "adjusted_salary_expectation": 0.32224950194358826,
+        "adjusted_role_type": 0.6666666666666667,
+        "adjusted_distance_score": 0.5264213239339337,
+        "descriptions_similarity_to_resume_norm": 0.7325387001037598,
+        "pay_average_norm": 0.07126436781609195
+      }
+    },
+    "job_B": {
+      "job_id": "79550880",
+      "user_preference_score": 0.5728119560665037,
+      "features": {
+        "adjusted_job_title_similarity": 0.6635905504226685,
+        "adjusted_job_industry_similarity": 0.4329386353492737,
+        "adjusted_company_size": 0.75,
+        "adjusted_job_sector": 1,
+        "adjusted_company_culture": 0.2988431453704834,
+        "adjusted_work_model": 1,
+        "adjusted_salary_expectation": 0.21182577311992645,
+        "adjusted_role_type": 0.6432748538011694,
+        "adjusted_distance_score": 0.5264213239339337,
+        "descriptions_similarity_to_resume_norm": 0.4226161241531372,
+        "pay_average_norm": 0.07126436781609195
+      }
+    },
+    "similarities": [
+      "adjusted_job_industry_similarity",
+      "adjusted_company_size",
+      "adjusted_job_sector",
+      "adjusted_distance_score",
+      "pay_average_norm"
+    ],
+    "differences": [
+      "adjusted_work_model",
+      "adjusted_role_type"
+    ],
+    "overall_similarity": 0.7453279549425299
+  }
+]
